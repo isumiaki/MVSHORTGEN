@@ -2,7 +2,7 @@
 <title>LYRIC MV STUDIO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+JP:wght@500;700;900&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@900&family=Reggae+One&family=RocknRoll+One&family=DotGothic16&family=Mochiy+Pop+One&family=M+PLUS+1+Code:wght@700&family=Train+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+JP:wght@500;700;900&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@900&family=Reggae+One&family=RocknRoll+One&family=DotGothic16&family=Mochiy+Pop+One&family=M+PLUS+1+Code:wght@700&family=Train+One&family=Shippori+Mincho+B1:wght@500;800&family=Zen+Old+Mincho:wght@900&family=Yuji+Syuku&family=Klee+One:wght@600&family=Yomogi&family=Hachi+Maru+Pop&family=Kiwi+Maru:wght@500&family=Rampart+One&family=Potta+One&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0a0a0a; --panel:#111; --ink:#f2efe9; --mut:#9a968e; --line:#f2efe9;
@@ -252,6 +252,26 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
 .lenbtns{display:flex;gap:4px;flex-wrap:wrap;align-items:center;margin-top:8px}
 .lenbtns .lbl{margin-right:4px}
 .fadeval{font-family:var(--mono);color:var(--y);font-weight:600}
+.presets{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:6px}
+.pr{border:1.5px solid #444;background:#000;padding:7px 8px;text-align:left;display:flex;flex-direction:column;gap:1px;min-width:0;transition:border-color .15s}
+.pr:hover{border-color:var(--ink)}
+.pr.on{border-color:var(--y);box-shadow:inset 0 0 0 1px var(--y)}
+.pr b{font-size:13.5px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pr small{font-size:11px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pr .ic{font-family:var(--en);font-weight:900;font-size:20px;line-height:1;color:var(--y);margin-bottom:3px}
+.pchk{display:flex;gap:7px;align-items:flex-start;font-size:12.5px;color:#d8d4cc;margin-top:8px;cursor:pointer}
+.pchk input{accent-color:var(--y);width:15px;height:15px;margin-top:2px;flex:none}
+.frames{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:6px}
+.fr{border:1.5px solid #444;background:#000;padding:4px;text-align:left;display:flex;flex-direction:column;gap:3px;min-width:0;transition:border-color .15s}
+.fr:hover{border-color:var(--ink)}
+.fr.on{border-color:var(--y);box-shadow:inset 0 0 0 1px var(--y)}
+.fr canvas{width:100%;height:auto;display:block;background:#111}
+.fr b{font-size:12.5px;font-weight:900;padding:0 3px}
+.fr small{font-size:10.5px;color:var(--mut);padding:0 3px 2px;line-height:1.35}
+.trans{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:4px}
+.trans button{border:1.5px solid #444;background:#000;padding:7px 4px;font-size:12.5px;font-weight:700;transition:border-color .15s}
+.trans button:hover{border-color:var(--ink)}
+.trans button.on{border-color:var(--y);background:var(--y);color:var(--bg)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (max-width:1100px){.grid{grid-template-columns:1fr}.sticky{position:static}}
 @media (max-width:600px){.rail{display:none}.mast{padding:12px 16px 0}.wrap{padding:12px 16px 26px}footer{margin:0 16px}.two{grid-template-columns:1fr}.ln{grid-template-columns:24px 1fr 56px 56px}.ln .bt{grid-column:1/-1;justify-content:flex-end}}
@@ -302,7 +322,7 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
       <h3>素材を入れる<small>01 素材</small></h3>
       <ol>
         <li><em>曲</em>（mp3 / wav / m4a）を「曲・背景・保存データ」の枠にドラッグ＆ドロップ。スマホは「選ぶ」から。</li>
-        <li><em>背景</em>の画像や動画を入れる（複数OK）。何行ごとに切り替えるかは「03 演出」で選べます。入れなければ単色の背景になります。</li>
+        <li><em>背景</em>の画像や動画を入れる（複数OK）。何行ごとに切り替えるか、切り替え方（クロスフェード・ズーム・スライド・ワイプ・フラッシュ・グリッチ・カット）と長さは「03 演出」で選べます。入れなければ単色の背景になります。</li>
         <li><em>歌詞</em>を「1行＝1フレーズ」で貼る。行の中のスペースのところで段を変えて、画面いっぱいに大きく組みます。</li>
         <li>目立たせたい言葉は <em>*走り出せ*</em> のように * で囲む。大胆タイポでは黄色の帯、グリッチでは色付きの文字になります。</li>
         <li>曲名を入れると、歌が始まるまでの間にタイトルが出ます（歌い出しまで 1.6 秒以上あるとき）。</li>
@@ -338,14 +358,16 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
     <section class="gd-step" id="g3"><div class="n">03</div><div>
       <h3>演出を選ぶ<small>03 演出</small></h3>
       <ul>
-        <li><em>大胆タイポ</em>：1 行ごとに画面いっぱいの文字。中央・左寄せ・右寄せ＋傾きが行ごとに入れ替わり、文字が 1 つずつ飛び込んできます。</li>
-        <li><em>グリッチ</em>：文字化けしてから正しい文字に確定する、ターミナル風。色ずれ・ノイズ・走査線つき。</li>
+        <li><em>文字のプリセット</em>は 14 種類。大胆タイポ（ヒップホップ・ロック）／グリッチ（EDM）／ズーム／シェイク（ロック）／ポップ（アイドル）／カラオケ（アニソン）／スライドアップ（シティポップ）／ウェーブ（夏）／ネオン（夜）／ブラーイン（チル）／タイプライター（ローファイ）／手書き（フォーク）／シネマ字幕（バラード）／縦書き（和風）。曲の雰囲気で選んでください。</li>
+        <li>「おすすめにも切り替える」がオンだと、プリセットに合うフォント・文字の装飾・画面の装飾も一緒に変わります（あとから自由に変更OK）。</li>
+        <li><em>文字の位置</em>は おまかせ／上／真ん中／下 から選べます。</li>
+        <li><em>画面の装飾</em>は なし／サイバー／シネマ／フィルム／ミニマル／ポップ／VHS／和／ネオン／マガジン の 10 種類。</li>
         <li><em>カラーテーマ</em>を押すと、文字・強調・装飾・背景の色が一度に切り替わります。そこから1色ずつ変えてもOK。</li>
         <li><em>色</em>は四角を押すとパレットが開きます。パレットに無い色は「その他の色」か、#FF2D95 のようなカラーコードを直接入力。</li>
         <li><em>文字の装飾</em>：なし・縁取り・二重縁・ずらし影・立体・光彩・白抜き・ベタ帯。「装飾の太さ」で強さを調整。色は「装飾1・装飾2」で選びます。</li>
         <li><em>強調の装飾</em>（*で囲んだ言葉）：帯・マーカー・下線・枠・色だけ・白抜き。</li>
         <li>グリッチの強さ（大胆タイポにも効きます）、文字の大きさ、背景の暗さ、フォントも調整できます。</li>
-        <li>「装飾パーツ」をオンにすると、画面の端に文字・行番号・進行バー・バーコード・縦の文字が入ります。1つずつオン／オフでき、左上と縦の文字は自由に書き換えられます（空欄なら曲名・アーティスト名）。</li>
+        <li>画面の装飾に入る文字（曲名・2行目・縦の文字）は自由に書き換えられ、行番号・進行バー・バーコードなどは 1 つずつオン／オフできます（その装飾で使われる項目だけが表示に反映されます）。</li>
         <li>上のプレビューは 9:16（縦）と 16:9（横）を切り替えられます。</li>
       </ul>
       <div class="tip">背景が明るい画像のときは、文字の装飾を「縁取り」「二重縁」「ベタ帯」にするか、「背景の暗さ」を上げると文字が読みやすくなります。</div>
@@ -479,8 +501,11 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
     <section class="panel" aria-label="演出">
       <div class="panel-h"><div class="no">03</div><div class="hd"><b>演出</b><span class="lbl">Preset / Type / Look</span></div></div>
       <div class="sec">
-        <span class="field-l lbl" style="margin-top:0">プリセット（動き）</span>
-        <div class="seg" id="segPreset"><button type="button" data-v="big" class="on">大胆タイポ</button><button type="button" data-v="glitch">グリッチ</button></div>
+        <span class="field-l lbl" style="margin-top:0">文字のプリセット（動きと組み方）</span>
+        <div class="presets" id="presets"></div>
+        <label class="pchk"><input type="checkbox" id="presetAuto" checked> プリセットを選んだら、おすすめのフォント・文字の装飾・画面の装飾にも切り替える</label>
+        <span class="field-l lbl">文字の位置</span>
+        <div class="seg" id="segPos"><button type="button" data-v="auto" class="on">おまかせ</button><button type="button" data-v="top">上</button><button type="button" data-v="mid">真ん中</button><button type="button" data-v="bot">下</button></div>
         <span class="field-l lbl">カラーテーマ（押すと全部の色がまとめて変わる）</span>
         <div class="themes" id="themes"></div>
         <span class="field-l lbl">色（四角を押すとパレット・コード入力もOK）</span>
@@ -501,26 +526,40 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
           <option value="Mochiy Pop One">Mochiy Pop One</option>
           <option value="DotGothic16">DotGothic16（ドット）</option>
           <option value="M PLUS 1 Code">M PLUS 1 Code（等幅）</option>
+          <option value="Shippori Mincho B1">しっぽり明朝（明朝）</option>
+          <option value="Zen Old Mincho">Zen Old Mincho（太い明朝）</option>
+          <option value="Yuji Syuku">佑字 肅（筆文字）</option>
+          <option value="Klee One">クレー（えんぴつ手書き）</option>
+          <option value="Yomogi">よもぎ（手書き）</option>
+          <option value="Hachi Maru Pop">はちまるポップ（かわいい）</option>
+          <option value="Kiwi Maru">キウイ丸（丸文字）</option>
+          <option value="Rampart One">ランパート（立体アウトライン）</option>
+          <option value="Potta One">ポッタ（筆ポップ）</option>
         </select>
         <label class="field-l lbl" for="sz">文字の大きさ <span id="szV">100%</span></label><input type="range" id="sz" min="50" max="150" value="100">
         <label class="field-l lbl" for="gl">グリッチの強さ <span id="glV">30</span></label><input type="range" id="gl" min="0" max="100" value="30">
         <label class="field-l lbl" for="dimR">背景の暗さ <span id="dimV">45%</span></label><input type="range" id="dimR" min="0" max="90" value="45">
         <span class="field-l lbl">背景の切り替え</span>
         <div class="seg" id="segBgMode"><button type="button" data-v="fixed">固定</button><button type="button" data-v="1">1行ごと</button><button type="button" data-v="2" class="on">2行ごと</button><button type="button" data-v="4">4行ごと</button></div>
-        <div class="row" style="margin-top:6px"><div class="k">装飾パーツ<small>画面の端に入れる文字・行番号・進行バー</small></div><label class="sw"><input type="checkbox" id="deco" checked><i></i><span class="sr">装飾パーツ</span></label></div>
+        <span class="field-l lbl">背景の切り替え方</span>
+        <div class="trans" id="bgTrans"></div>
+        <label class="field-l lbl" for="bgTD">切り替えの長さ <span class="fadeval" id="bgTDV">0.8秒</span></label><input type="range" id="bgTD" min="0.2" max="2" step="0.1" value="0.8">
+        <span class="field-l lbl">画面の装飾（フレーム）</span>
+        <div class="frames" id="frames"></div>
+        <input type="checkbox" id="deco" checked hidden>
         <div class="decoparts" id="decoParts">
           <div class="dp-chk">
-            <label><input type="checkbox" data-dp="label" checked> 左上の文字</label>
+            <label><input type="checkbox" data-dp="label" checked> 見出し（曲名）</label>
             <label><input type="checkbox" data-dp="num" checked> 行番号</label>
             <label><input type="checkbox" data-dp="bar" checked> 進行バー・時間</label>
             <label><input type="checkbox" data-dp="code" checked> バーコード</label>
-            <label><input type="checkbox" data-dp="rail" checked> 縦の文字</label>
+            <label><input type="checkbox" data-dp="rail" checked> アーティスト・縦の文字</label>
           </div>
           <div class="two">
-            <div><label class="field-l lbl" for="dpText">左上の文字（空欄なら曲名）</label><input type="text" id="dpText" placeholder="例）NEW SINGLE 2026.10.10" maxlength="40"></div>
-            <div><label class="field-l lbl" for="dpSub">左上の2行目（空欄なら非表示）</label><input type="text" id="dpSub" placeholder="例）9:16 · 30FPS" maxlength="40"></div>
+            <div><label class="field-l lbl" for="dpText">見出しの文字（空欄なら曲名）</label><input type="text" id="dpText" placeholder="例）NEW SINGLE 2026.10.10" maxlength="40"></div>
+            <div><label class="field-l lbl" for="dpSub">サブの文字（空欄なら非表示）</label><input type="text" id="dpSub" placeholder="例）9:16 · 30FPS" maxlength="40"></div>
           </div>
-          <label class="field-l lbl" for="dpRail">縦の文字（空欄ならアーティスト名と曲名）</label><input type="text" id="dpRail" placeholder="例）OFFICIAL LYRIC VIDEO" maxlength="60">
+          <label class="field-l lbl" for="dpRail">アーティスト欄・縦の文字（空欄ならアーティスト名と曲名）</label><input type="text" id="dpRail" placeholder="例）OFFICIAL LYRIC VIDEO" maxlength="60">
         </div>
         <div class="row"><div class="k">歌詞を次の行まで残す<small>オフ：歌い終わりで消える</small></div><label class="sw"><input type="checkbox" id="hold" checked><i></i><span class="sr">歌詞を残す</span></label></div>
       </div>
@@ -578,7 +617,7 @@ const easeOut = (x) => 1 - Math.pow(1 - x, 3);
 const rnd = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
 const fmt = (t) => { if (t == null || !isFinite(t)) return "--:--.--"; t = Math.max(0, t); const m = Math.floor(t / 60), s = t - m * 60; return String(m).padStart(2, "0") + ":" + s.toFixed(2).padStart(5, "0"); };
-const WEIGHT = { "Noto Sans JP": 900, "Zen Kaku Gothic New": 900, "M PLUS 1 Code": 700 };
+const WEIGHT = { "Noto Sans JP": 900, "Zen Kaku Gothic New": 900, "M PLUS 1 Code": 700, "Shippori Mincho B1": 800, "Zen Old Mincho": 900, "Klee One": 600, "Kiwi Maru": 500 };
 const fontStr = (px, f) => `${WEIGHT[f] || 400} ${px}px "${f}"`;
 const POOL = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン#$%&@*+=/<>01ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘ".split("");
 
@@ -586,7 +625,7 @@ const POOL = "アイウエオカキクケコサシスセソタチツテトナニ
 const S = {
   size: "v", W: 1080, H: 1920, preset: "big", font: "Noto Sans JP",
   colMain: "#ffffff", colAcc: "#ffe600", colAccText: "#0a0a0a", colDeco: "#000000", colDeco2: "#e60012", colBg: "#0a0a0a",
-  tdeco: "stroke", tdecoW: 1, accStyle: "band", theme: "isumi",
+  tdeco: "stroke", tdecoW: 1, accStyle: "band", theme: "isumi", pos: "auto", frame: "cyber", presetAuto: true, bgTrans: "fade", bgTransDur: 0.8,
   sz: 1, gl: 0.3, dim: 0.45, bgMode: "2", deco: true, hold: true,
   dp: { label: true, num: true, bar: true, code: true, rail: true }, dpText: "", dpSub: "", dpRail: "",
   lines: [], audio: null, peaks: null, peakRate: 100, bgs: [],
@@ -594,7 +633,8 @@ const S = {
   view: { start: 0, pps: 60 }, tap: { on: false, idx: 0, open: -1 },
   rec: null, playing: false, dirty: true, auto: false,
 };
-const cv = $("cv"), ctx = cv.getContext("2d");
+const cv = $("cv"); let ctx = cv.getContext("2d");
+function withCtx(c2, fn){ const keep = ctx; ctx = c2; try { fn(); } finally { ctx = keep; } }
 const tc = document.createElement("canvas"), tctx = tc.getContext("2d");
 const tR = document.createElement("canvas"), tRc = tR.getContext("2d");
 const tB = document.createElement("canvas"), tBc = tB.getContext("2d");
@@ -682,6 +722,28 @@ function titleLine(){
   return L;
 }
 
+/* ================= text presets ================= */
+// fit: big = each row fills the width / uni = one size for all rows / sub = subtitle size, phrases packed per row / vert = vertical writing
+const PRESETS = {
+  big:     { label: "大胆タイポ",   genre: "ヒップホップ・ロック",   fit: "big",  align: "cycle", pos: "mid", font: "Noto Sans JP",        frame: "cyber",    gl: 0.3,  tdeco: "stroke" },
+  glitch:  { label: "グリッチ",     genre: "EDM・サイバー",         fit: "uni",  align: "l",     pos: "mid", font: "M PLUS 1 Code",       frame: "cyber",    gl: 0.75, tdeco: "stroke", glitchBase: true },
+  zoom:    { label: "ズーム",       genre: "EDM・ハイテンション",    fit: "big",  align: "c",     pos: "mid", font: "Train One",           frame: "neon",     gl: 0.25, tdeco: "stroke" },
+  shake:   { label: "シェイク",     genre: "ロック・パンク",         fit: "big",  align: "c",     pos: "mid", font: "Dela Gothic One",     frame: "film",     gl: 0.2,  tdeco: "shadow" },
+  pop:     { label: "ポップ",       genre: "アイドル・かわいい",     fit: "uni",  align: "c",     pos: "mid", font: "Hachi Maru Pop",      frame: "pop",      gl: 0,    tdeco: "double" },
+  karaoke: { label: "カラオケ",     genre: "アニソン・J-POP",        fit: "sub",  align: "c",     pos: "bot", font: "Zen Kaku Gothic New", frame: "minimal",  gl: 0,    tdeco: "double", scale: 1.35 },
+  rise:    { label: "スライドアップ", genre: "シティポップ・R&B",    fit: "uni",  align: "c",     pos: "mid", font: "Zen Kaku Gothic New", frame: "magazine", gl: 0,    tdeco: "none" },
+  wave:    { label: "ウェーブ",     genre: "夏・ドリーミー",         fit: "uni",  align: "c",     pos: "mid", font: "Kiwi Maru",           frame: "pop",      gl: 0,    tdeco: "stroke" },
+  neon:    { label: "ネオン",       genre: "シンセウェイブ・夜",     fit: "uni",  align: "c",     pos: "mid", font: "RocknRoll One",       frame: "neon",     gl: 0.15, tdeco: "glow" },
+  blur:    { label: "ブラーイン",   genre: "チル・アンビエント",     fit: "uni",  align: "c",     pos: "mid", font: "Zen Old Mincho",      frame: "minimal",  gl: 0,    tdeco: "glow" },
+  typewriter: { label: "タイプライター", genre: "ローファイ・インディー", fit: "uni", align: "l", pos: "mid", font: "M PLUS 1 Code",     frame: "vhs",      gl: 0.1,  tdeco: "none" },
+  hand:    { label: "手書き",       genre: "フォーク・アコースティック", fit: "uni", align: "c",  pos: "mid", font: "Yomogi",              frame: "film",     gl: 0,    tdeco: "none" },
+  cinema:  { label: "シネマ字幕",   genre: "バラード・映画",         fit: "sub",  align: "c",     pos: "bot", font: "Shippori Mincho B1",  frame: "cinema",   gl: 0,    tdeco: "none" },
+  tate:    { label: "縦書き",       genre: "和風・演歌・バラード",   fit: "vert", align: "c",     pos: "mid", font: "Yuji Syuku",          frame: "wa",       gl: 0,    tdeco: "none" },
+};
+const P = () => PRESETS[S.preset] || PRESETS.big;
+const POS_LABEL = { auto: "おまかせ", top: "上", mid: "真ん中", bot: "下" };
+const curPos = () => (S.pos && S.pos !== "auto" ? S.pos : P().pos);
+
 /* ================= layout ================= */
 const layCache = new Map(), wCache = new Map();
 function charW(c){
@@ -689,64 +751,157 @@ function charW(c){
   if (w == null) { tctx.font = fontStr(100, S.font); w = tctx.measureText(c).width; wCache.set(k, w); }
   return w;
 }
+const ROT_V = new Set(["ー", "〜", "～", "…", "‥", "—", "―", "-", "－", "(", ")", "（", "）", "「", "」", "『", "』", "[", "]", "<", ">", "＜", "＞"]);
+// area the text may use, so it never collides with the frame decoration
+function safeArea(){
+  const v = S.H > S.W;
+  const m = { none: [0.06, 0.06, 0.06], cyber: [0.07, 0.08, 0.1], cinema: [0.07, v ? 0.11 : 0.13, v ? 0.11 : 0.13], film: v ? [0.11, 0.05, 0.05] : [0.07, 0.13, 0.13],
+    minimal: [0.08, 0.08, 0.08], pop: [0.1, 0.12, 0.1], vhs: [0.07, 0.12, 0.1], wa: [0.12, 0.08, 0.12], neon: [0.09, 0.09, 0.09], magazine: [0.07, v ? 0.2 : 0.3, 0.12] }[S.frame] || [0.07, 0.08, 0.1];
+  return { x: m[0], t: m[1], b: m[2] };
+}
+function blockY(total, vert){
+  const H = S.H, p = curPos(), sa = safeArea();
+  const top = H * Math.max(sa.t + 0.02, vert ? 0.12 : 0.1), bot = H * Math.min(1 - sa.b - 0.02, vert ? 0.86 : 0.88), mid = (top + bot) / 2 + H * (vert ? -0.02 : 0);
+  if (p === "top") return top;
+  if (p === "bot") return bot - total;
+  return mid - total / 2;
+}
 function layout(L, variant){
-  const key = [L.disp, L.acc.join(","), variant, S.W, S.font, S.preset, S.sz].join("|");
+  const pr = P();
+  const key = [L.disp, L.acc.join(","), variant, S.W, S.font, S.preset, S.sz, curPos(), S.frame].join("|");
   let lay = layCache.get(key); if (lay) return lay;
-  const W = S.W, H = S.H, vert = H > W, big = S.preset === "big";
+  const W = S.W, H = S.H, vert = H > W, fit = pr.fit;
   const chars = [...L.disp]; const acc = new Set(L.acc);
-  // rows split at spaces
   let rows = [], cur = [];
   chars.forEach((c, i) => { if (c === " " || c === "　") { if (cur.length) rows.push(cur); cur = []; } else cur.push({ c, i, acc: acc.has(i) }); });
   if (cur.length) rows.push(cur);
   if (!rows.length) rows = [[]];
-  const maxC = big ? (vert ? 6 : 10) : (vert ? 9 : 16);
+  const maxC = { big: vert ? 6 : 10, uni: vert ? 9 : 16, sub: vert ? 12 : 22, vert: vert ? 8 : 6 }[fit];
+  if (fit === "sub") {                      // pack phrases into as few rows as possible
+    const packed = []; let r = [];
+    rows.forEach(ph => { if (r.length && r.length + 1 + ph.length > maxC) { packed.push(r); r = []; } if (r.length) r.push({ c: "　", i: -1, acc: false, sp: true }); r = r.concat(ph); });
+    if (r.length) packed.push(r); rows = packed;
+  }
   rows = rows.flatMap(r => { if (r.length <= maxC) return [r]; const k = Math.ceil(r.length / maxC), n = Math.ceil(r.length / k); const out = []; for (let j = 0; j < r.length; j += n) out.push(r.slice(j, j + n)); return out; });
-  const fill = W * 0.86;
+  const mkRuns = (cs, axis) => { const runs = []; let run = null;
+    cs.forEach(o => { if (o.acc) { if (!run) { run = { first: o.i, ids: [o.i] }; runs.push(run); } else run.ids.push(o.i); } else run = null; });
+    return runs; };
+
+  if (fit === "vert") {
+    const n = rows.length, longest = Math.max(...rows.map(r => r.length), 1);
+    const sa = safeArea(), colH = H * Math.min(vert ? 0.66 : 0.74, (1 - sa.t - sa.b) * 0.92);
+    let s = Math.min(colH / (longest * 1.05), (W * (1 - 2 * sa.x)) / (n * 1.35), W * (vert ? 0.14 : 0.09)) * S.sz;
+    const gap = s * 1.35, totalW = gap * n;
+    const total = longest * s * 1.05;
+    const y0 = blockY(total, vert);
+    let x = W / 2 + totalW / 2 - gap / 2;
+    const R = rows.map(r => {
+      const cs = r.map((o, k) => ({ ...o, w: s, cx: x, cy: y0 + s * 0.52 + k * s * 1.05, rot: ROT_V.has(o.c) }));
+      const row = { vertical: true, size: s, x: x, y0: y0, y1: y0 + r.length * s * 1.05, chars: cs, runs: mkRuns(cs) };
+      x -= gap; return row;
+    });
+    lay = { rows: R, rot: 0, cx: W / 2, cy: y0 + total / 2, top: y0, bottom: y0 + total, left: W / 2 - totalW / 2, vertical: true };
+    layCache.set(key, lay); return lay;
+  }
+
+  const sa = safeArea();
+  const fill = W * (1 - 2 * sa.x) * (fit === "sub" ? 1.03 : 1);
   const w100 = rows.map(r => r.reduce((a, o) => a + charW(o.c), 0) || 100);
   let sizes;
-  if (big) sizes = w100.map(w => Math.min(fill / w * 100, H * (vert ? 0.2 : 0.3)) * S.sz);
-  else { const s = Math.min(Math.min(...w100.map(w => fill / w * 100)), W * (vert ? 0.12 : 0.075)) * S.sz; sizes = w100.map(() => s); }
-  const lh = big ? 1.06 : 1.32;
+  if (fit === "big") sizes = w100.map(w => Math.min(fill / w * 100, H * (vert ? 0.2 : 0.3)) * S.sz);
+  else {
+    const cap = fit === "sub" ? W * (vert ? 0.062 : 0.04) * (pr.scale || 1) : W * (vert ? 0.12 : 0.075);
+    const s = Math.min(Math.min(...w100.map(w => fill / w * 100)), cap) * S.sz; sizes = w100.map(() => s);
+  }
+  const lh = fit === "big" ? 1.06 : fit === "sub" ? 1.45 : 1.32;
   let total = sizes.reduce((a, s) => a + s * lh, 0);
-  const maxH = H * (vert ? 0.66 : 0.72);
+  const maxH = H * Math.min(vert ? 0.66 : 0.72, (1 - sa.t - sa.b) * 0.92);
   if (total > maxH) { const f = maxH / total; sizes = sizes.map(s => s * f); total = maxH; }
-  const align = big ? ["c", "l", "r"][variant % 3] : "l";
-  const mx = W * 0.07;
-  let y = H * (vert ? 0.47 : 0.5) - total / 2;
+  const align = pr.align === "cycle" ? ["c", "l", "r"][variant % 3] : pr.align;
+  const mx = W * sa.x;
+  const top = blockY(total, vert);
+  let y = top;
   const R = rows.map((r, k) => {
     const s = sizes[k], rw = w100[k] * s / 100;
     let x = align === "c" ? (W - rw) / 2 : align === "l" ? mx : W - mx - rw;
     const cy = y + s * lh / 2; y += s * lh;
-    const cs = r.map(o => { const w = charW(o.c) * s / 100; const it = { ...o, x, w }; x += w; return it; });
-    // accent runs
-    const runs = []; let run = null;
-    cs.forEach(o => { if (o.acc) { if (!run) { run = { x0: o.x, x1: o.x + o.w, first: o.i }; runs.push(run); } else run.x1 = o.x + o.w; } else run = null; });
-    return { size: s, y: cy, chars: cs, runs, x0: cs.length ? cs[0].x : mx, x1: x };
+    const cs = r.map(o => { const w = charW(o.c) * s / 100; const it = { ...o, x, w, cx: x + w / 2, cy }; x += w; return it; }).filter(o => !o.sp);
+    return { size: s, y: cy, chars: cs, runs: mkRuns(cs), x0: cs.length ? cs[0].x : mx, x1: x };
   });
-  lay = { rows: R, rot: big ? [0, -0.05, 0.035][variant % 3] : 0, cx: W / 2, cy: H * (vert ? 0.47 : 0.5), top: H * (vert ? 0.47 : 0.5) - total / 2, bottom: H * (vert ? 0.47 : 0.5) + total / 2 };
+  const rot = pr.align === "cycle" ? [0, -0.05, 0.035][variant % 3] : 0;
+  lay = { rows: R, rot, cx: W / 2, cy: top + total / 2, top, bottom: top + total };
   layCache.set(key, lay);
   return lay;
 }
 
 /* ================= drawing ================= */
+/* ---------- background: segments + transitions ---------- */
+function segAt(t){                     // which background segment is showing at time t
+  if (S.bgMode === "fixed") return 0;
+  const n = parseInt(S.bgMode, 10) || 1, li = lastStartedAt(t);
+  return li < 0 ? 0 : Math.floor(li / n) + 1;
+}
+function segStartOf(seg){
+  if (seg <= 0) return 0;
+  const n = parseInt(S.bgMode, 10) || 1, first = (seg - 1) * n;
+  for (let k = first; k < Math.min(S.lines.length, first + n); k++) if (S.lines[k].t0 != null) return S.lines[k].t0;
+  return 0;
+}
+function drawBgSeg(seg, t, alpha, extra){
+  const W = S.W, H = S.H, b = S.bgs[seg % S.bgs.length], el = b && b.el; if (!el) return;
+  const iw = b.type === "video" ? el.videoWidth : el.naturalWidth, ih = b.type === "video" ? el.videoHeight : el.naturalHeight;
+  if (!iw || !ih) return;
+  const st = segStartOf(seg), k = clamp((t - st + 0.6) / 9.6);      // slow push-in continues through the transition
+  const e = extra || {};
+  const z = (1.02 + 0.07 * k) * (e.zoom || 1);
+  const s = Math.max(W / iw, H / ih) * z, dw = iw * s, dh = ih * s;
+  const drift = (seg % 2 ? -1 : 1) * (dw - W) * 0.25 * k;
+  ctx.save(); ctx.globalAlpha = clamp(alpha);
+  if (e.blur > 0.5) ctx.filter = `blur(${e.blur.toFixed(1)}px)`;
+  if (e.clip) { ctx.beginPath(); e.clip(ctx); ctx.clip(); }
+  try { ctx.drawImage(el, (W - dw) / 2 + drift + (e.dx || 0), (H - dh) / 2 + (e.dy || 0), dw, dh); } catch (err) {}
+  ctx.restore();
+}
+const BG_TRANS = { fade: "クロスフェード", zoom: "ズーム", slide: "スライド", wipe: "ワイプ", flash: "フラッシュ", glitch: "グリッチ", cut: "カット" };
 function drawBg(t){
   const W = S.W, H = S.H;
-  ctx.globalCompositeOperation = "source-over"; ctx.globalAlpha = 1;
+  ctx.globalCompositeOperation = "source-over"; ctx.globalAlpha = 1; ctx.filter = "none";
   ctx.fillStyle = S.colBg; ctx.fillRect(0, 0, W, H);
   if (S.bgs.length) {
-    let idx = 0, segStart = 0, seg = 0;
-    if (S.bgMode !== "fixed") {
-      const n = parseInt(S.bgMode, 10) || 1, li = lastStartedAt(t);
-      seg = li < 0 ? 0 : Math.floor(li / n) + 1; idx = seg % S.bgs.length;
-      if (li >= 0) { const L0 = S.lines[Math.floor(li / n) * n]; segStart = L0 && L0.t0 != null ? L0.t0 : S.lines[li].t0; }
-    }
-    const b = S.bgs[idx], el = b.el;
-    const iw = b.type === "video" ? el.videoWidth : el.naturalWidth, ih = b.type === "video" ? el.videoHeight : el.naturalHeight;
-    if (iw && ih) {
-      const z = 1.02 + 0.07 * clamp((t - segStart) / 9);
-      const s = Math.max(W / iw, H / ih) * z, dw = iw * s, dh = ih * s;
-      const drift = (seg % 2 ? -1 : 1) * (dw - W) * 0.25 * clamp((t - segStart) / 9);
-      try { ctx.drawImage(el, (W - dw) / 2 + drift, (H - dh) / 2, dw, dh); } catch (e) {}
+    const d = S.bgTrans === "cut" ? 0 : Math.max(0.05, S.bgTransDur);
+    const a = segAt(t - d / 2), b = segAt(t + d / 2);
+    const differ = a !== b && (a % S.bgs.length !== b % S.bgs.length || S.bgs.length > 1);
+    if (!differ || d === 0) drawBgSeg(segAt(t), t, 1);
+    else {
+      const bound = segStartOf(b), p = clamp((t - (bound - d / 2)) / d), e = p * p * (3 - 2 * p);   // smoothstep
+      switch (S.bgTrans) {
+        case "zoom":
+          drawBgSeg(a, t, 1, { zoom: 1 + 0.18 * e, blur: e * W * 0.012 });
+          drawBgSeg(b, t, e, { zoom: 1.18 - 0.18 * e, blur: (1 - e) * W * 0.012 }); break;
+        case "slide":
+          drawBgSeg(a, t, 1, { dx: -W * e });
+          drawBgSeg(b, t, 1, { dx: W * (1 - e) }); break;
+        case "wipe": {
+          drawBgSeg(a, t, 1);
+          const k = W * 0.25, x = -k + (W + k * 2) * e;
+          drawBgSeg(b, t, 1, { clip: c => { c.moveTo(0, 0); c.lineTo(x + k, 0); c.lineTo(x - k, H); c.lineTo(0, H); c.closePath(); } });
+          ctx.save(); ctx.strokeStyle = S.colAcc; ctx.lineWidth = Math.max(4, W * 0.006); ctx.globalAlpha = Math.sin(e * Math.PI);
+          ctx.beginPath(); ctx.moveTo(x + k, 0); ctx.lineTo(x - k, H); ctx.stroke(); ctx.restore(); break; }
+        case "flash":
+          drawBgSeg(p < 0.5 ? a : b, t, 1);
+          ctx.save(); ctx.globalAlpha = Math.pow(Math.sin(p * Math.PI), 1.5) * 0.95; ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H); ctx.restore(); break;
+        case "glitch": {
+          drawBgSeg(a, t, 1);
+          let y = 0, seed = Math.floor(t * 30) * 5.1;
+          while (y < H) { const h = Math.max(6, H * (0.02 + 0.08 * rnd(seed++))); const use = rnd(seed++) < e;
+            if (use) { const off = (rnd(seed++) - 0.5) * W * 0.12 * Math.sin(e * Math.PI);
+              drawBgSeg(b, t, 1, { dx: off, clip: c => c.rect(0, y, W, h) }); }
+            y += h; }
+          break; }
+        default:   // fade
+          drawBgSeg(a, t, 1);
+          drawBgSeg(b, t, e);
+      }
     }
   }
   if (S.dim > 0) { ctx.fillStyle = `rgba(0,0,0,${S.dim})`; ctx.fillRect(0, 0, W, H); }
@@ -774,20 +929,35 @@ function glyph(c, ch, x, y, size, kind, fillOverride){
   }
   c.fillStyle = fill; c.fillText(ch, x, y);
 }
-/* row band (text deco "band") and accent decorations; reveal = right edge of revealed chars */
-function revealRight(row, L, t, filter){
-  let right = null;
-  for (const o of row.chars) { if (filter && !filter(o)) continue; const p = L ? clamp((t - L.ct[o.i] + 0.03) / 0.12) : 1; if (p > 0) right = o.x + o.w * easeOut(p); }
-  return right;
-}
+/* row band (text deco "band") and accent decorations; reveal follows the appearing chars */
+function revealOf(o, L, t){ return L ? clamp((t - L.ct[o.i] + 0.03) / 0.12) : 1; }
 function drawRowDeco(c, row, L, t, phase){
-  const sz = row.size;
+  const sz = row.size, as = S.accStyle, karaoke = S.preset === "karaoke";
+  const rv = o => karaoke ? (L ? clamp((t - L.t0 + 0.3) / 0.2) : 1) : revealOf(o, L, t);
+  if (row.vertical) {
+    const ends = (list) => { let a = null, b = null; for (const o of list) { const p = rv(o); if (p > 0) { const y0 = o.cy - o.w * 0.52; if (a == null) a = y0; b = y0 + o.w * 1.05 * easeOut(p); } } return a == null ? null : [a, b]; };
+    if (phase === "under" && S.tdeco === "band" && row.chars.length) { const e = ends(row.chars); if (e) { c.fillStyle = S.colDeco; c.fillRect(row.x - sz * 0.62, e[0] - sz * 0.12, sz * 1.24, e[1] - e[0] + sz * 0.24); } }
+    for (const run of row.runs) {
+      const list = row.chars.filter(o => run.ids.includes(o.i)); const e = ends(list); if (!e) continue;
+      c.fillStyle = S.colAcc; c.strokeStyle = S.colAcc;
+      if (phase === "under") {
+        if (as === "band") c.fillRect(row.x - sz * 0.56, e[0] - sz * 0.06, sz * 1.12, e[1] - e[0] + sz * 0.12);
+        else if (as === "marker") c.fillRect(row.x - sz * 0.05, e[0], sz * 0.5, e[1] - e[0]);
+      } else {
+        if (as === "underline") c.fillRect(row.x + sz * 0.58, e[0], Math.max(3, sz * 0.08), e[1] - e[0]);   // 傍線
+        else if (as === "frame") { c.lineWidth = Math.max(3, sz * 0.06); c.strokeRect(row.x - sz * 0.64, e[0] - sz * 0.12, sz * 1.28, e[1] - e[0] + sz * 0.24); }
+      }
+    }
+    return;
+  }
+  const right = (list) => { let r = null; for (const o of list) { const p = rv(o); if (p > 0) r = o.x + o.w * easeOut(p); } return r; };
   if (phase === "under" && S.tdeco === "band" && row.chars.length) {
-    const r = revealRight(row, L, t); if (r != null) { const pad = sz * 0.14; c.fillStyle = S.colDeco; c.fillRect(row.chars[0].x - pad, row.y - sz * 0.6, r - row.chars[0].x + pad * 2, sz * 1.2); }
+    const r = right(row.chars); if (r != null) { const pad = sz * 0.14; c.fillStyle = S.colDeco; c.fillRect(row.chars[0].x - pad, row.y - sz * 0.6, r - row.chars[0].x + pad * 2, sz * 1.2); }
   }
   for (const run of row.runs) {
-    const right = revealRight(row, L, t, o => o.acc && o.x >= run.x0 && o.x < run.x1); if (right == null) continue;
-    const pad = sz * 0.06, x0 = run.x0 - pad, wdt = right - run.x0 + pad * 2, as = S.accStyle;
+    const list = row.chars.filter(o => run.ids.includes(o.i)); if (!list.length) continue;
+    const r = right(list); if (r == null) continue;
+    const pad = sz * 0.06, x0 = list[0].x - pad, wdt = r - list[0].x + pad * 2;
     c.fillStyle = S.colAcc; c.strokeStyle = S.colAcc;
     if (phase === "under") {
       if (as === "band") c.fillRect(x0, row.y - sz * 0.56, wdt, sz * 1.1);
@@ -799,65 +969,151 @@ function drawRowDeco(c, row, L, t, phase){
   }
 }
 
-function drawBig(L, li, t, outT){
+/* ---------- per-preset motion ----------
+   line(L,t,outT,lay) → transform for the whole line (origin = block centre)
+   ch(o,L,t,row,q)    → transform for one char, or null while hidden.  q = 0→1 during the line's exit */
+const easeBack = (x) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const jit = (seed) => rnd(seed) - 0.5;
+const FX = {
+  big: {
+    out: 0.12,
+    line: (L, t, outT, lay, q) => { const k = easeOut(clamp((t - L.t0 + 0.03) / 0.28)), p = 1.07 - 0.07 * k; return { sx: p, sy: p * (1 - q * 0.92), a: 1 - q * 0.6, r: lay.rot }; },
+    ch: (o, L, t, row) => { const p = (t - L.ct[o.i]) / 0.22; if (p < 0) return null; const e = easeOut(clamp(p)); return { s: 1 + (1 - e) * 0.85, a: clamp(p / 0.18), dy: (1 - e) * row.size * 0.14 }; },
+  },
+  glitch: {
+    out: 0.2,
+    line: (L, t, outT, lay, q) => ({ a: 1 - q }),
+    ch: (o, L, t, row, q) => { const ct = L.ct[o.i]; if (t < ct - 0.2) return null;
+      const scr = t < ct || (q > 0 && rnd(o.i * 3.1 + Math.floor(t * 30)) < q);
+      return scr ? { ch: POOL[Math.floor(rnd(o.i * 7.7 + Math.floor(t * 24)) * POOL.length)], fill: S.colAcc } : {}; },
+    cursor: "block", label: true,
+  },
+  zoom: {
+    out: 0.25,
+    line: (L, t, outT, lay, q) => { const k = easeOut(clamp((t - L.t0 + 0.05) / 0.35)); const s = (0.3 + 0.7 * k) * (1 + q * 0.7); return { sx: s, sy: s, a: clamp(k * 3) * (1 - q) }; },
+    ch: (o, L, t, row) => { const p = (t - L.ct[o.i]) / 0.18; if (p < 0) return null; const e = easeOut(clamp(p)); return { s: 0.4 + 0.6 * e, a: clamp(p / 0.12) }; },
+  },
+  shake: {
+    out: 0.15,
+    line: (L, t, outT, lay, q) => { const k = clamp((t - L.t0) / 0.3), f = Math.floor(t * 30), amp = lay.rows[0] ? lay.rows[0].size * 0.08 * (1 - k) : 0;
+      return { dx: jit(f * 1.3) * amp, dy: jit(f * 2.7) * amp, a: 1 - q, sx: 1 + q * 0.15, sy: 1 - q * 0.3 }; },
+    ch: (o, L, t, row) => { const p = (t - L.ct[o.i]) / 0.14; if (p < 0) return null; const e = easeOut(clamp(p)), f = Math.floor(t * 24);
+      return { s: 1 + (1 - e) * 1.3, r: jit(o.i * 3.3) * 0.5 * (1 - e) + jit(o.i * 1.9) * 0.06, a: clamp(p / 0.08), dx: jit(f * 7 + o.i) * row.size * 0.025, dy: jit(f * 5 + o.i * 3) * row.size * 0.025 }; },
+  },
+  pop: {
+    out: 0.25,
+    line: (L, t, outT, lay, q) => { const s = 1 - easeOut(q) * 0.9; return { sx: s, sy: s, a: 1 - q }; },
+    ch: (o, L, t, row) => { const p = (t - L.ct[o.i]) / 0.35; if (p < 0) return null; const k = clamp(p), side = o.i % 2 ? 1 : -1;
+      return { s: Math.max(0, easeBack(k)), r: side * (0.06 + 0.25 * (1 - k)), a: clamp(p / 0.12), dy: Math.sin(t * 4 + o.i * 0.9) * row.size * 0.035 * k }; },
+  },
+  karaoke: {
+    out: 0.25,
+    line: (L, t, outT, lay, q) => ({ a: clamp((t - L.t0 + 0.3) / 0.2) * (1 - q), dy: (1 - easeOut(clamp((t - L.t0 + 0.3) / 0.3))) * (lay.rows[0] ? lay.rows[0].size * 0.4 : 0) }),
+    ch: (o, L, t, row) => { if (t < L.t0 - 0.3) return null; const nx = nextCt(L, o.i); return { kp: clamp((t - L.ct[o.i]) / Math.max(0.08, Math.min(0.6, nx - L.ct[o.i]))) }; },
+  },
+  rise: {
+    out: 0.35, clip: true,
+    line: (L, t, outT, lay, q) => ({}),
+    ch: (o, L, t, row, q) => { const p = (t - L.ct[o.i]) / 0.4; if (p < 0) return null; const e = easeOut(clamp(p));
+      const qo = clamp(q * 1.6 - (o.i % 8) * 0.06); return { dy: (1 - e) * row.size * 0.95 - easeOut(qo) * row.size * 0.95, a: clamp(p / 0.2) }; },
+  },
+  wave: {
+    out: 0.3,
+    line: (L, t, outT, lay, q) => ({ a: 1 - q }),
+    ch: (o, L, t, row) => { const p = (t - L.ct[o.i]) / 0.4; if (p < 0) return null; const e = easeOut(clamp(p));
+      return { dy: Math.sin(t * 3.2 + o.i * 0.55) * row.size * 0.07 + (1 - e) * row.size * 0.3, r: Math.sin(t * 2.5 + o.i * 0.5) * 0.05, a: clamp(p / 0.3) }; },
+  },
+  neon: {
+    out: 0.3, glow: true,
+    line: (L, t, outT, lay, q) => ({}),
+    ch: (o, L, t, row, q) => { const p = t - L.ct[o.i]; if (p < 0) return null; const f = Math.floor(t * 30);
+      let a = 1; if (p < 0.35) a = rnd(o.i * 9.1 + f) < 0.55 ? 1 : 0.12; else if (rnd(Math.floor(t * 12) * 3.7 + o.i) < 0.012) a = 0.35;
+      if (q > 0) a *= rnd(o.i * 4.3 + f) < q ? 0 : 1; return { a }; },
+  },
+  blur: {
+    out: 0.5,
+    line: (L, t, outT, lay, q) => ({ a: 1 - q }),
+    ch: (o, L, t, row, q) => { const p = (t - L.ct[o.i]) / 0.6; if (p < 0) return null; const e = easeOut(clamp(p));
+      return { blur: (1 - e) * row.size * 0.12 + q * row.size * 0.1, a: e, s: 1.12 - 0.12 * e }; },
+  },
+  typewriter: {
+    out: 0.35, cursor: "bar",
+    line: (L, t, outT, lay, q) => ({}),
+    ch: (o, L, t, row, q) => { if (t < L.ct[o.i]) return null; if (q > 0 && o.ord >= L._n * (1 - q)) return null; return {}; },
+  },
+  hand: {
+    out: 0.5,
+    line: (L, t, outT, lay, q) => ({ a: 1 - q }),
+    ch: (o, L, t, row) => { const p = (t - L.ct[o.i]) / 0.5; if (p < 0) return null; const e = easeOut(clamp(p));
+      return { a: e, r: jit(o.i * 5.7) * 0.14, s: 0.9 + 0.1 * e, dy: jit(o.i * 2.1) * row.size * 0.07 }; },
+  },
+  cinema: {
+    out: 0.6,
+    line: (L, t, outT, lay, q) => { const k = clamp((t - L.t0 + 0.15) / 0.6); return { a: k * (1 - q), dy: (1 - easeOut(k)) * (lay.rows[0] ? lay.rows[0].size * 0.25 : 0) }; },
+    ch: (o, L, t) => (t < L.t0 - 0.15 ? null : {}),
+  },
+  tate: {
+    out: 0.5,
+    line: (L, t, outT, lay, q) => ({ a: 1 - q }),
+    ch: (o, L, t, row) => { const p = (t - L.ct[o.i]) / 0.45; if (p < 0) return null; const e = easeOut(clamp(p)); return { dy: -(1 - e) * row.size * 0.45, a: clamp(p / 0.3) }; },
+  },
+};
+function nextCt(L, i){ for (let j = i + 1; j < L.ct.length; j++) if (L.ct[j] > L.ct[i]) return L.ct[j]; return Math.max(L.ct[i] + 0.3, L.t1); }
+
+function drawLine(L, li, t, outT){
+  const pr = P(), fx = FX[S.preset] || FX.big;
   const lay = layout(L, L.title ? 0 : li);
-  const k = easeOut(clamp((t - L.t0 + 0.03) / 0.28));
-  const punch = 1.07 - 0.07 * k;
-  const q = clamp((t - (outT - 0.12)) / 0.12);
+  if (L._n == null) L._n = [...L.disp].filter(c => c !== " " && c !== "　").length;
+  const q = clamp((t - (outT - fx.out)) / fx.out);
+  const lt = Object.assign({ sx: 1, sy: 1, a: 1, r: 0, dx: 0, dy: 0 }, fx.line(L, t, outT, lay, q) || {});
   const c = tctx;
   c.save();
-  c.translate(lay.cx, lay.cy); c.rotate(lay.rot); c.scale(punch, punch * (1 - q * 0.92)); c.translate(-lay.cx, -lay.cy);
-  c.globalAlpha = 1 - q * 0.6;
+  c.translate(lay.cx + lt.dx, lay.cy + lt.dy); c.rotate(lt.r); c.scale(lt.sx, lt.sy); c.translate(-lay.cx, -lay.cy);
+  c.globalAlpha = clamp(lt.a);
   c.textAlign = "center"; c.textBaseline = "middle";
+  if (fx.label && !L.title) {
+    const ls = Math.min(S.W, S.H) * 0.024; c.font = `600 ${ls}px "JetBrains Mono", monospace`; c.fillStyle = S.colAcc; c.textAlign = "left";
+    c.fillText(`> LINE ${String(li + 1).padStart(2, "0")} // ${fmt(L.t0)}`, lay.rows[0].x0 || S.W * 0.07, lay.top - ls * 1.6); c.textAlign = "center";
+  }
+  let ord = 0, last = null;
   for (const row of lay.rows) {
     c.font = fontStr(row.size, S.font);
     drawRowDeco(c, row, L, t, "under");
+    if (fx.clip) { c.save(); c.beginPath(); if (row.vertical) c.rect(row.x - row.size, row.y0 - row.size * 0.2, row.size * 2, row.y1 - row.y0 + row.size * 0.4); else c.rect(-S.W, row.y - row.size * 0.66, S.W * 3, row.size * 1.32); c.clip(); }
     for (const o of row.chars) {
-      const p = (t - L.ct[o.i]) / 0.22; if (p < 0) continue;
-      const e = easeOut(clamp(p)), s = 1 + (1 - e) * 0.85;
-      c.save(); c.globalAlpha *= clamp(p / 0.18);
-      c.translate(o.x + o.w / 2, row.y + (1 - e) * row.size * 0.14); c.scale(s, s);
-      glyph(c, o.c, 0, 0, row.size, o.acc ? "acc" : "main");
+      o.ord = ord++;
+      const f = fx.ch(o, L, t, row, q); if (!f) continue;
+      if (t >= L.ct[o.i]) last = { o, row };
+      c.save();
+      c.globalAlpha *= clamp(f.a == null ? 1 : f.a);
+      c.translate(o.cx + (f.dx || 0), o.cy + (f.dy || 0));
+      if (f.r || o.rot) c.rotate((f.r || 0) + (o.rot ? Math.PI / 2 : 0));
+      if (f.s != null && f.s !== 1) c.scale(f.s, f.s);
+      if (f.blur > 0.3) c.filter = `blur(${f.blur.toFixed(1)}px)`;
+      const kind = o.acc ? "acc" : "main", ch = f.ch || o.c;
+      if (fx.glow) { c.shadowColor = S.colAcc; c.shadowBlur = row.size * 0.35; }
+      glyph(c, ch, 0, 0, row.size, kind, f.fill || null);
+      if (f.kp > 0) {               // karaoke wipe: re-draw the sung part in the accent colour
+        c.save(); c.beginPath();
+        if (row.vertical) c.rect(-row.size, -row.size * 0.6, row.size * 2, row.size * 1.2 * f.kp); else c.rect(-o.w / 2 - 2, -row.size, (o.w + 4) * f.kp, row.size * 2);
+        c.clip(); glyph(c, ch, 0, 0, row.size, kind, o.acc && S.accStyle === "band" ? S.colDeco2 : S.colAcc); c.restore();
+      }
       c.restore();
     }
+    if (fx.clip) c.restore();
     drawRowDeco(c, row, L, t, "over");
+  }
+  // cursor (glitch / typewriter)
+  if (fx.cursor && last && t < L.t1 + 0.6 && Math.floor(t * 4) % 2 === 0) {
+    const o = last.o, s = last.row.size; c.fillStyle = S.colAcc;
+    if (last.row.vertical) c.fillRect(o.cx - s * 0.45, o.cy + s * 0.6, s * 0.9, fx.cursor === "bar" ? s * 0.08 : s * 0.5);
+    else if (fx.cursor === "bar") c.fillRect(o.x + o.w + s * 0.06, last.row.y - s * 0.5, Math.max(2, s * 0.07), s);
+    else c.fillRect(o.x + o.w + s * 0.08, last.row.y - s * 0.45, s * 0.5, s * 0.9);
   }
   if (L.title) {
     const a = $("artist").value.trim();
-    if (a) { const fs = Math.min(S.W, S.H) * 0.036; c.font = `600 ${fs}px "JetBrains Mono", monospace`; c.fillStyle = S.colAcc; c.globalAlpha = clamp((t - 0.9) / 0.3) * (1 - q);
-      c.fillText("— " + a.toUpperCase() + " —", lay.cx, lay.bottom + fs * 1.8); }
-  }
-  c.restore();
-}
-
-function drawGlitch(L, li, t, outT){
-  const lay = layout(L, 0);
-  const q = clamp((t - (outT - 0.2)) / 0.2);
-  const c = tctx;
-  c.save(); c.globalAlpha = 1 - q; c.textAlign = "left"; c.textBaseline = "middle";
-  // terminal label
-  const ls = Math.min(S.W, S.H) * 0.024;
-  c.font = `600 ${ls}px "JetBrains Mono", monospace`; c.fillStyle = S.colAcc;
-  const lab = L.title ? "> PLAY // " + ($("artist").value.trim() || "TRACK").toUpperCase() : `> LINE ${String(li + 1).padStart(2, "0")} // ${fmt(L.t0)}`;
-  c.fillText(lab, lay.rows[0].x0, lay.top - ls * 1.6);
-  let lastX = null, lastRow = null;
-  for (const row of lay.rows) {
-    c.font = fontStr(row.size, S.font);
-    drawRowDeco(c, row, L, t, "under");
-    for (const o of row.chars) {
-      const ct = L.ct[o.i]; if (t < ct - 0.2) continue;
-      let ch = o.c;
-      const scramble = t < ct || (q > 0 && rnd(o.i * 3.1 + Math.floor(t * 30)) < q);
-      if (scramble) ch = POOL[Math.floor(rnd(o.i * 7.7 + Math.floor(t * 24)) * POOL.length)];
-      glyph(c, ch, o.x, row.y, row.size, o.acc ? "acc" : "main", scramble ? S.colAcc : null);
-      if (t >= ct) { lastX = o.x + o.w; lastRow = row; }
-    }
-    drawRowDeco(c, row, L, t, "over");
-  }
-  if (lastRow && t < L.t1 + 0.6 && Math.floor(t * 4) % 2 === 0) { c.fillStyle = S.colAcc; c.fillRect(lastX + lastRow.size * 0.08, lastRow.y - lastRow.size * 0.45, lastRow.size * 0.5, lastRow.size * 0.9); }
-  if (L.title) {
-    const a = $("artist").value.trim();
-    if (a) { c.font = `600 ${ls * 1.3}px "JetBrains Mono", monospace`; c.fillStyle = S.colMain; c.globalAlpha = clamp((t - 0.9) / 0.3) * (1 - q); c.fillText(a.toUpperCase(), lay.rows[0].x0, lay.bottom + ls * 2.4); }
+    if (a) { const fs = Math.min(S.W, S.H) * 0.036; c.font = `600 ${fs}px "JetBrains Mono", "Noto Sans JP", monospace`; c.fillStyle = S.colAcc; c.globalAlpha = clamp((t - 0.9) / 0.3) * (1 - q);
+      c.textAlign = "center"; c.fillText("— " + a.toUpperCase() + " —", lay.cx, lay.bottom + fs * 1.8); }
   }
   c.restore();
 }
@@ -877,7 +1133,7 @@ function spikeAt(t, L, outT){
 function composite(t, L, outT){
   const W = S.W, H = S.H;
   const sp = L ? spikeAt(t, L, outT) : 0;
-  const base = S.preset === "glitch" ? S.gl * 0.3 : 0;
+  const base = P().glitchBase ? S.gl * 0.3 : 0;
   const dx = (base + sp) * W * 0.012;
   if (dx > 0.6) {
     tint(tR, tRc, "#ff1744"); tint(tB, tBc, "#00e5ff");
@@ -897,75 +1153,219 @@ function composite(t, L, outT){
 }
 function overlays(t, sp){
   const W = S.W, H = S.H;
-  if (S.preset === "glitch") {
+  if (P().glitchBase) {
     ctx.globalAlpha = 0.35; ctx.fillStyle = scanPat; ctx.fillRect(0, 0, W, H);
     if (sp > 0.55) {                       // frame tear
       const y = rnd(Math.floor(t * 30)) * H * 0.8, h = H * (0.05 + 0.12 * rnd(Math.floor(t * 30) + 1));
       ctx.globalAlpha = 1; ctx.drawImage(cv, 0, y, W, h, (rnd(Math.floor(t * 30) + 2) - 0.5) * W * 0.1, y, W, h);
     }
   }
-  ctx.globalAlpha = S.preset === "glitch" ? 0.07 + 0.12 * sp : 0.045;
+  ctx.globalAlpha = P().glitchBase ? 0.07 + 0.12 * sp : 0.045;
   ctx.save(); const ox = Math.floor(rnd(Math.floor(t * 24)) * 256), oy = Math.floor(rnd(Math.floor(t * 24) + 5) * 256);
   ctx.translate(-ox, -oy); ctx.globalCompositeOperation = "overlay"; ctx.fillStyle = noisePat; ctx.fillRect(0, 0, W + 256, H + 256); ctx.restore();
   ctx.globalAlpha = 1; ctx.globalCompositeOperation = "source-over";
 }
-function deco(t, li){
-  if (!S.deco) return;
-  const W = S.W, H = S.H, u = Math.min(W, H), m = u * 0.05, dp = S.dp;
+/* ================= screen frames (画面の装飾) ================= */
+const FRAMES = {
+  none:     { label: "なし",       sub: "文字だけ" },
+  cyber:    { label: "サイバー",   sub: "型番・バーコード・進行バー" },
+  cinema:   { label: "シネマ",     sub: "上下の黒帯・クレジット" },
+  film:     { label: "フィルム",   sub: "フィルムの穴・傷・ちらつき" },
+  minimal:  { label: "ミニマル",   sub: "細い枠とトンボだけ" },
+  pop:      { label: "ポップ",     sub: "カラフルな図形・ステッカー" },
+  vhs:      { label: "VHS",        sub: "ビデオテープ風・PLAY表示" },
+  wa:       { label: "和",         sub: "罫線・落款（はんこ）・縦書きの曲名" },
+  neon:     { label: "ネオン",     sub: "光るネオン管のふち" },
+  magazine: { label: "マガジン",   sub: "雑誌の表紙のような大見出し" },
+};
+function frameInfo(t){
+  const W = S.W, H = S.H, u = Math.min(W, H), m = u * 0.05;
   const title = ($("title").value.trim() || (S.audio ? S.audio.name.replace(/\.[^.]+$/, "") : "")).replace(/[*＊]/g, "");
   const artist = $("artist").value.trim();
-  ctx.save(); ctx.globalAlpha = 0.9; ctx.fillStyle = S.colMain; ctx.textBaseline = "top"; ctx.textAlign = "left";
-  const fs = u * 0.021;
-  ctx.font = `600 ${fs}px "JetBrains Mono", "Noto Sans JP", monospace`;
-  if (dp.label) {
-    const l1 = (S.dpText || title).toUpperCase().slice(0, 40);
-    if (l1) ctx.fillText(l1, m, m);
-    if (S.dpSub) { ctx.fillStyle = S.colAcc; ctx.fillText(S.dpSub.toUpperCase().slice(0, 40), m, m + fs * 1.5); }
-  }
-  // line number, outlined, bleeding off the right edge
-  if (dp.num && li >= 0) {
-    const ns = u * (S.size === "v" ? 0.34 : 0.26);
-    ctx.font = `900 ${ns}px "Archivo", sans-serif`; ctx.textAlign = "right"; ctx.textBaseline = "top";
-    ctx.lineWidth = u * 0.004; ctx.strokeStyle = S.colMain; ctx.globalAlpha = 0.55;
-    ctx.strokeText(String(li + 1).padStart(2, "0"), W + ns * 0.12, m * 0.6);
-  }
-  const ca = (S.range.in != null || S.range.out != null) ? cutA() : 0;   // timecode / bar follow the cut
-  const d = Math.max(0.01, (S.range.in != null || S.range.out != null) ? cutB() - ca : (dur() || 1)), by = H - m * 1.3;
-  t = Math.max(0, t - ca);
-  ctx.globalAlpha = 0.9;
-  if (dp.bar) {
-    ctx.fillStyle = S.colMain; ctx.fillRect(m, by, W - m * 2, Math.max(2, u * 0.003));
-    ctx.fillStyle = S.colAcc; ctx.fillRect(m, by - u * 0.003, (W - m * 2) * clamp(t / d), Math.max(4, u * 0.009));
-    ctx.font = `600 ${fs}px "JetBrains Mono", monospace`; ctx.textBaseline = "bottom"; ctx.fillStyle = S.colMain;
-    ctx.textAlign = "left"; ctx.fillText(fmt(t), m, by - fs * 0.6);
-    ctx.textAlign = "right"; ctx.fillText("-" + fmt(Math.max(0, d - t)), W - m, by - fs * 0.6);
-  }
-  if (dp.code) {
-    ctx.fillStyle = S.colMain;
-    const bx = W - m - u * 0.16, bh = u * 0.035; let x = bx;
-    for (let i = 0; x < W - m; i++) { const w = (1 + Math.floor(rnd(i * 3.3) * 3)) * u * 0.0018; if (i % 2 === 0) ctx.fillRect(x, by + fs * 0.9, w, bh); x += w; }
-  }
-  if (dp.rail) {
-    const rail = S.dpRail || [artist, title].filter(Boolean).join(" ── ");
-    if (rail) {
-      ctx.save(); ctx.translate(m * 0.55, H * 0.62); ctx.rotate(-Math.PI / 2); ctx.textAlign = "left"; ctx.textBaseline = "middle"; ctx.globalAlpha = 0.6; ctx.fillStyle = S.colMain;
-      ctx.font = `600 ${fs * 0.85}px "JetBrains Mono", "Noto Sans JP", monospace`;
-      ctx.fillText(rail.toUpperCase().slice(0, 60), 0, 0);
-      ctx.restore();
-    }
-  }
-  ctx.restore();
+  const cut = S.range.in != null || S.range.out != null, ca = cut ? cutA() : 0;
+  const d = Math.max(0.01, cut ? cutB() - ca : (dur() || 1)), rt = Math.max(0, t - ca);
+  return { W, H, u, m, title, artist, d, rt, label: (S.dpText || title), sub: S.dpSub, rail: S.dpRail || [artist, title].filter(Boolean).join(" ── ") };
 }
+function mono(px, w){ return `${w || 600} ${px}px "JetBrains Mono", "Noto Sans JP", monospace`; }
+function frameDeco(phase, t, li){
+  const f = S.frame; if (!f || f === "none") return;
+  const I = frameInfo(t), dp = S.dp, c = ctx;
+  c.save(); c.globalCompositeOperation = "source-over"; c.globalAlpha = 1; c.filter = "none";
+  ({ cyber: frCyber, cinema: frCinema, film: frFilm, minimal: frMinimal, pop: frPop, vhs: frVhs, wa: frWa, neon: frNeon, magazine: frMagazine }[f] || (() => {}))(c, phase, t, li, I, dp);
+  c.restore();
+}
+function progressBar(c, I, x, y, w, h, colA, colB){ c.fillStyle = colA; c.fillRect(x, y, w, Math.max(2, h * 0.35)); c.fillStyle = colB; c.fillRect(x, y - h * 0.32, w * clamp(I.rt / I.d), h); }
+
+function frCyber(c, phase, t, li, I, dp){
+  if (phase !== "over") return;
+  const { W, H, u, m } = I, fs = u * 0.021;
+  c.globalAlpha = 0.9; c.fillStyle = S.colMain; c.textBaseline = "top"; c.textAlign = "left"; c.font = mono(fs);
+  if (dp.label) { if (I.label) c.fillText(I.label.toUpperCase().slice(0, 40), m, m); if (I.sub) { c.fillStyle = S.colAcc; c.fillText(I.sub.toUpperCase().slice(0, 40), m, m + fs * 1.5); } }
+  if (dp.num && li >= 0) { const ns = u * (S.size === "v" ? 0.34 : 0.26); c.font = `900 ${ns}px "Archivo", sans-serif`; c.textAlign = "right"; c.lineWidth = u * 0.004; c.strokeStyle = S.colMain; c.globalAlpha = 0.55; c.strokeText(String(li + 1).padStart(2, "0"), W + ns * 0.12, m * 0.6); }
+  const by = H - m * 1.3; c.globalAlpha = 0.9;
+  if (dp.bar) { progressBar(c, I, m, by, W - m * 2, Math.max(4, u * 0.009), S.colMain, S.colAcc);
+    c.font = mono(fs); c.textBaseline = "bottom"; c.fillStyle = S.colMain; c.textAlign = "left"; c.fillText(fmt(I.rt), m, by - fs * 0.6); c.textAlign = "right"; c.fillText("-" + fmt(Math.max(0, I.d - I.rt)), W - m, by - fs * 0.6); }
+  if (dp.code) { c.fillStyle = S.colMain; let x = W - m - u * 0.16; for (let i = 0; x < W - m; i++) { const w = (1 + Math.floor(rnd(i * 3.3) * 3)) * u * 0.0018; if (i % 2 === 0) c.fillRect(x, by + fs * 0.9, w, u * 0.035); x += w; } }
+  if (dp.rail && I.rail) { c.save(); c.translate(m * 0.55, H * 0.62); c.rotate(-Math.PI / 2); c.textAlign = "left"; c.textBaseline = "middle"; c.globalAlpha = 0.6; c.fillStyle = S.colMain; c.font = mono(fs * 0.85); c.fillText(I.rail.toUpperCase().slice(0, 60), 0, 0); c.restore(); }
+}
+function frCinema(c, phase, t, li, I, dp){
+  const { W, H, u } = I, bh = H * (S.size === "v" ? 0.09 : 0.1);
+  if (phase === "under") { c.fillStyle = "#000"; c.fillRect(0, 0, W, bh); c.fillRect(0, H - bh, W, bh); return; }
+  const fs = u * 0.022; c.fillStyle = "#e8e4dc"; c.textAlign = "center"; c.textBaseline = "middle"; c.globalAlpha = 0.85;
+  c.font = `500 ${fs}px "Shippori Mincho B1", "Noto Sans JP", serif`;
+  if (dp.label && I.label) { const s = I.label.split("").join(" "); c.fillText(s.slice(0, 60), W / 2, bh / 2); }
+  const line2 = [I.sub || "", dp.rail ? (S.dpRail || I.artist) : ""].filter(Boolean).join("   ·   ");
+  if (line2) { c.globalAlpha = 0.6; c.font = `500 ${fs * 0.85}px "Shippori Mincho B1", "Noto Sans JP", serif`; c.fillText(line2.slice(0, 70), W / 2, H - bh / 2); }
+  if (dp.bar) { c.globalAlpha = 0.5; c.fillStyle = "#e8e4dc"; c.fillRect(W * 0.3, H - bh * 0.18, W * 0.4 * clamp(I.rt / I.d), Math.max(1.5, u * 0.002)); }
+}
+function frFilm(c, phase, t, li, I, dp){
+  if (phase !== "over") return;
+  const { W, H, u } = I, v = S.size === "v", f = Math.floor(t * 24);
+  // flicker + dust
+  c.globalAlpha = 0.06 + 0.05 * rnd(f * 1.7); c.fillStyle = rnd(f) < 0.5 ? "#000" : "#fff4dd"; c.fillRect(0, 0, W, H);
+  c.globalAlpha = 0.55; c.fillStyle = "#f5efe0";
+  for (let i = 0; i < 6; i++) { if (rnd(f * 3.1 + i) < 0.5) continue; const x = rnd(f * 5.3 + i) * W, y = rnd(f * 7.9 + i) * H, r = u * (0.0015 + 0.004 * rnd(f + i * 9)); c.beginPath(); c.arc(x, y, r, 0, 7); c.fill(); }
+  if (rnd(f * 0.37) < 0.35) { c.globalAlpha = 0.25; c.fillRect(rnd(Math.floor(t * 3)) * W, 0, Math.max(1, u * 0.0015), H); }   // scratch
+  // vignette
+  c.globalAlpha = 1; const g = c.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.35, W / 2, H / 2, Math.max(W, H) * 0.75); g.addColorStop(0, "rgba(0,0,0,0)"); g.addColorStop(1, "rgba(0,0,0,.55)"); c.fillStyle = g; c.fillRect(0, 0, W, H);
+  // sprocket strips
+  const sw = u * 0.075, hole = sw * 0.42, gap = hole * 1.9, roll = (t * 60) % gap;
+  c.fillStyle = "#0b0a08";
+  if (v) { c.fillRect(0, 0, sw, H); c.fillRect(W - sw, 0, sw, H); } else { c.fillRect(0, 0, W, sw); c.fillRect(0, H - sw, W, sw); }
+  c.fillStyle = "#e9e2d0"; c.globalAlpha = 0.85;
+  const rr = (x, y, w, h) => { c.beginPath(); c.roundRect ? c.roundRect(x, y, w, h, w * 0.18) : c.rect(x, y, w, h); c.fill(); };
+  if (v) for (let y = -gap + roll; y < H; y += gap) { rr(sw / 2 - hole / 2, y, hole, hole * 1.3); rr(W - sw / 2 - hole / 2, y, hole, hole * 1.3); }
+  else for (let x = -gap + roll; x < W; x += gap) { rr(x, sw / 2 - hole / 2, hole * 1.3, hole); rr(x, H - sw / 2 - hole / 2, hole * 1.3, hole); }
+  c.globalAlpha = 0.75; c.fillStyle = "#f2b33d"; c.font = mono(u * 0.016, 600);
+  const fr = String(Math.floor(I.rt * 24) % 10000).padStart(4, "0");
+  if (v) { c.save(); c.translate(sw * 0.5, H * 0.5); c.rotate(-Math.PI / 2); c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(`▶ ${fr}   SAFETY FILM 400   ${(dp.label && I.label) ? I.label.toUpperCase().slice(0, 24) : ""}`, 0, 0); c.restore(); }
+  else { c.textAlign = "left"; c.textBaseline = "middle"; c.fillText(`▶ ${fr}   SAFETY FILM 400   ${(dp.label && I.label) ? I.label.toUpperCase().slice(0, 24) : ""}`, u * 0.04, sw * 0.5); }
+}
+function frMinimal(c, phase, t, li, I, dp){
+  if (phase !== "over") return;
+  const { W, H, u } = I, m = u * 0.045, k = u * 0.03;
+  c.strokeStyle = S.colMain; c.globalAlpha = 0.55; c.lineWidth = Math.max(1, u * 0.0016);
+  c.strokeRect(m, m, W - m * 2, H - m * 2);
+  c.globalAlpha = 0.9; c.lineWidth = Math.max(1.5, u * 0.0025);
+  [[m, m, 1, 1], [W - m, m, -1, 1], [m, H - m, 1, -1], [W - m, H - m, -1, -1]].forEach(([x, y, sx, sy]) => { c.beginPath(); c.moveTo(x - sx * k, y); c.lineTo(x + sx * k * 0.4, y); c.moveTo(x, y - sy * k); c.lineTo(x, y + sy * k * 0.4); c.stroke(); });
+  c.fillStyle = S.colMain; c.textBaseline = "middle"; const fs = u * 0.019;
+  if (dp.label && I.label) { c.font = `500 ${fs}px "Zen Kaku Gothic New", "Noto Sans JP", sans-serif`; c.textAlign = "center"; c.fillStyle = S.colMain; c.globalAlpha = 0.85;
+    const w = c.measureText(I.label).width + fs * 1.6; c.fillStyle = S.colBg; c.fillRect(W / 2 - w / 2, m - fs, w, fs * 2); c.fillStyle = S.colMain; c.fillText(I.label.slice(0, 40), W / 2, m); }
+  if (I.sub || (dp.rail && I.artist)) { c.font = `500 ${fs * 0.9}px "Zen Kaku Gothic New", "Noto Sans JP", sans-serif`; c.globalAlpha = 0.7; c.textAlign = "center";
+    const s = I.sub || I.artist; const w = c.measureText(s).width + fs * 1.6; c.fillStyle = S.colBg; c.fillRect(W / 2 - w / 2, H - m - fs, w, fs * 2); c.fillStyle = S.colMain; c.fillText(s.slice(0, 50), W / 2, H - m); }
+  if (dp.bar) { c.globalAlpha = 0.9; c.fillStyle = S.colAcc; c.fillRect(m, H - m - Math.max(2, u * 0.003) / 2, (W - m * 2) * clamp(I.rt / I.d), Math.max(2, u * 0.003)); }
+}
+function frPop(c, phase, t, li, I, dp){
+  if (phase !== "over") return;
+  const { W, H, u } = I, cols = [S.colAcc, S.colDeco2, S.colMain];
+  // dotted corners
+  c.globalAlpha = 0.5;
+  for (const [ox, oy] of [[0, 0], [W, H]]) { c.fillStyle = S.colAcc; for (let i = 0; i < 7; i++) for (let j = 0; j < 7 - i; j++) { const x = Math.abs(ox - (u * 0.03 + i * u * 0.032)), y = Math.abs(oy - (u * 0.03 + j * u * 0.032)); c.beginPath(); c.arc(x, y, u * 0.006, 0, 7); c.fill(); } }
+  // floating shapes
+  c.globalAlpha = 0.95;
+  const shapes = [[0.07, 0.2, 0], [0.93, 0.14, 1], [0.06, 0.84, 2], [0.94, 0.8, 3], [0.95, 0.46, 4], [0.05, 0.56, 5]];
+  shapes.forEach(([px, py, k]) => {
+    const x = W * px + Math.sin(t * 0.9 + k) * u * 0.012, y = H * py + Math.cos(t * 1.1 + k * 2) * u * 0.012, s = u * (0.03 + 0.012 * (k % 3)), r = t * (k % 2 ? 0.6 : -0.5) + k;
+    c.save(); c.translate(x, y); c.rotate(r); c.fillStyle = cols[k % 3]; c.strokeStyle = cols[(k + 1) % 3]; c.lineWidth = u * 0.006;
+    c.beginPath();
+    if (k % 3 === 0) { for (let i = 0; i < 10; i++) { const a = i * Math.PI / 5, rr = i % 2 ? s * 0.45 : s; c.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); } c.closePath(); c.fill(); }
+    else if (k % 3 === 1) { c.arc(0, 0, s * 0.7, 0, 7); c.stroke(); }
+    else { c.moveTo(0, -s); c.lineTo(s * 0.9, s * 0.6); c.lineTo(-s * 0.9, s * 0.6); c.closePath(); c.fill(); }
+    c.restore();
+  });
+  // title sticker
+  if (dp.label && I.label) {
+    const fs = u * 0.034; c.save(); c.translate(u * 0.08, u * 0.09); c.rotate(-0.08);
+    c.font = `400 ${fs}px "Hachi Maru Pop", "Mochiy Pop One", "Noto Sans JP", sans-serif`; const w = c.measureText(I.label).width + fs * 1.4;
+    c.fillStyle = S.colAcc; c.strokeStyle = S.colMain; c.lineWidth = u * 0.005; c.beginPath(); c.roundRect ? c.roundRect(0, 0, w, fs * 1.8, fs * 0.9) : c.rect(0, 0, w, fs * 1.8); c.fill(); c.stroke();
+    c.fillStyle = S.colAccText; c.textAlign = "left"; c.textBaseline = "middle"; c.fillText(I.label.slice(0, 24), fs * 0.7, fs * 0.92);
+    if (I.sub || (dp.rail && I.artist)) { c.font = `400 ${fs * 0.6}px "Hachi Maru Pop", "Noto Sans JP", sans-serif`; c.fillStyle = S.colMain; c.fillText((I.sub || I.artist).slice(0, 30), fs * 0.3, fs * 2.5); }
+    c.restore();
+  }
+  if (dp.bar) { const y = I.H - u * 0.06; c.fillStyle = S.colMain; c.globalAlpha = 0.5; c.beginPath(); c.roundRect ? c.roundRect(u * 0.08, y, I.W - u * 0.16, u * 0.012, u * 0.006) : c.rect(u * 0.08, y, I.W - u * 0.16, u * 0.012); c.fill();
+    c.globalAlpha = 1; c.fillStyle = S.colAcc; const px = u * 0.08 + (I.W - u * 0.16) * clamp(I.rt / I.d); c.beginPath(); c.arc(px, y + u * 0.006, u * 0.016, 0, 7); c.fill(); }
+}
+function frVhs(c, phase, t, li, I, dp){
+  if (phase !== "over") return;
+  const { W, H, u } = I, f = Math.floor(t * 30);
+  c.globalAlpha = 0.25; c.fillStyle = scanPat; c.fillRect(0, 0, W, H);
+  // tracking band rolling down
+  const by = ((t * 0.18) % 1.3 - 0.15) * H; c.globalAlpha = 0.12; c.fillStyle = "#fff"; c.fillRect(0, by, W, H * 0.025);
+  c.globalAlpha = 1; try { c.drawImage(cv, 0, by, W, H * 0.02, (rnd(f) - 0.5) * u * 0.02, by, W, H * 0.02); } catch (e) {}
+  const fs = u * 0.036; c.font = `400 ${fs}px "DotGothic16", "JetBrains Mono", monospace`; c.textBaseline = "top";
+  c.fillStyle = "#fff"; c.shadowColor = "rgba(0,0,0,.6)"; c.shadowOffsetX = u * 0.003; c.shadowOffsetY = u * 0.003;
+  const m = u * 0.06;
+  c.textAlign = "left"; c.fillText("PLAY ▶", m, m);
+  if (dp.label && I.label) { c.font = `400 ${fs * 0.7}px "DotGothic16", "JetBrains Mono", monospace`; c.fillText(I.label.toUpperCase().slice(0, 28), m, m + fs * 1.4); }
+  c.font = `400 ${fs}px "DotGothic16", "JetBrains Mono", monospace`; c.textBaseline = "bottom";
+  if (dp.bar) { const s = Math.floor(I.rt), tc = `${Math.floor(s / 3600)}:${String(Math.floor(s / 60) % 60).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`; c.fillText("SP  " + tc, m, H - m); }
+  const dt = new Date(); const mon = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][dt.getMonth()];
+  c.textAlign = "right"; c.fillText(I.sub ? I.sub.toUpperCase().slice(0, 20) : `${mon}.${String(dt.getDate()).padStart(2, "0")} ${dt.getFullYear()}`, W - m, H - m);
+  if (Math.floor(t * 1.5) % 2 === 0) { c.textBaseline = "top"; c.fillStyle = "#ff3b30"; c.fillText("●", W - m, m); }
+}
+function frWa(c, phase, t, li, I, dp){
+  if (phase === "under") { c.globalAlpha = 0.07; c.save(); c.globalCompositeOperation = "multiply"; c.fillStyle = noisePat; c.fillRect(0, 0, I.W, I.H); c.restore(); return; }
+  const { W, H, u } = I, m = u * 0.05;
+  c.strokeStyle = S.colMain; c.globalAlpha = 0.6; c.lineWidth = Math.max(1, u * 0.0018);
+  for (const x of [m, m + u * 0.012, W - m, W - m - u * 0.012]) { c.beginPath(); c.moveTo(x, m * 1.4); c.lineTo(x, H - m * 1.4); c.stroke(); }
+  // vertical title on the right
+  if (dp.rail || dp.label) {
+    const txt = (dp.label ? I.label : "") || I.title; const fs = u * 0.032;
+    c.globalAlpha = 0.9; c.fillStyle = S.colMain; c.font = `400 ${fs}px "Yuji Syuku", "Shippori Mincho B1", serif`; c.textAlign = "center"; c.textBaseline = "middle";
+    [...(txt || "").slice(0, 14)].forEach((ch, i) => { c.save(); c.translate(W - m - u * 0.05, H * 0.12 + i * fs * 1.15); if (ROT_V.has(ch)) c.rotate(Math.PI / 2); c.fillText(ch, 0, 0); c.restore(); });
+    if (dp.rail && I.artist) { c.font = `400 ${fs * 0.6}px "Shippori Mincho B1", serif`; c.globalAlpha = 0.7; [...I.artist.slice(0, 16)].forEach((ch, i) => c.fillText(ch, W - m - u * 0.11, H * 0.14 + i * fs * 0.72)); }
+  }
+  // red seal (落款)
+  const s = u * 0.085, sx = m + u * 0.04, sy = H - m * 1.4 - s - u * 0.03;
+  c.globalAlpha = 0.92; c.fillStyle = "#c8102e"; c.fillRect(sx, sy, s, s);
+  c.fillStyle = "#fbf3e6"; c.font = `400 ${s * 0.42}px "Yuji Syuku", "Shippori Mincho B1", serif`; c.textAlign = "center"; c.textBaseline = "middle";
+  const seal = [...(I.sub || I.artist || I.title || "歌").replace(/\s/g, "")].slice(0, 4);
+  if (seal.length <= 1) { c.font = `400 ${s * 0.7}px "Yuji Syuku", serif`; c.fillText(seal[0] || "歌", sx + s / 2, sy + s / 2); }
+  else seal.forEach((ch, i) => c.fillText(ch, sx + s * (i < 2 ? 0.72 : 0.28), sy + s * (i % 2 ? 0.72 : 0.28)));
+  if (dp.bar) { c.globalAlpha = 0.6; c.fillStyle = S.colMain; c.fillRect(m * 2, H - m, (W - m * 4) * clamp(I.rt / I.d), Math.max(1.5, u * 0.002)); }
+}
+function frNeon(c, phase, t, li, I, dp){
+  if (phase !== "over") return;
+  const { W, H, u } = I, m = u * 0.045, f = Math.floor(t * 20);
+  const on = (k) => rnd(f * 1.3 + k) > 0.03;
+  const tube = (col, inset, k) => { if (!on(k)) return; c.save(); c.strokeStyle = col; c.shadowColor = col; c.shadowBlur = u * 0.03; c.lineWidth = u * 0.006; c.globalAlpha = 0.95;
+    c.beginPath(); c.roundRect ? c.roundRect(inset, inset, W - inset * 2, H - inset * 2, u * 0.04) : c.rect(inset, inset, W - inset * 2, H - inset * 2); c.stroke(); c.shadowBlur = 0; c.lineWidth = u * 0.002; c.strokeStyle = "#fff"; c.stroke(); c.restore(); };
+  tube(S.colAcc, m, 1); tube(S.colDeco2, m + u * 0.018, 2);
+  if (dp.label && I.label) { const fs = u * 0.04; c.save(); c.font = `400 ${fs}px "RocknRoll One", "Noto Sans JP", sans-serif`; c.textAlign = "center"; c.textBaseline = "middle";
+    c.fillStyle = S.colBg; const w = c.measureText(I.label).width + fs; c.fillRect(W / 2 - w / 2, m - fs * 0.5, w, fs * 1.4);
+    if (on(5)) { c.shadowColor = S.colAcc; c.shadowBlur = u * 0.025; c.fillStyle = "#fff"; c.fillText(I.label.slice(0, 24), W / 2, m + fs * 0.2); } c.restore(); }
+  if (I.sub || (dp.rail && I.artist)) { const fs = u * 0.022; c.save(); c.font = `400 ${fs}px "RocknRoll One", "Noto Sans JP", sans-serif`; c.textAlign = "center"; c.textBaseline = "middle"; c.shadowColor = S.colDeco2; c.shadowBlur = u * 0.02; c.fillStyle = "#fff"; c.fillText((I.sub || I.artist).slice(0, 40), W / 2, H - m - u * 0.05); c.restore(); }
+  if (dp.bar) { c.save(); c.shadowColor = S.colAcc; c.shadowBlur = u * 0.015; c.fillStyle = S.colAcc; c.fillRect(m * 2, H - m - u * 0.012, (W - m * 4) * clamp(I.rt / I.d), Math.max(2, u * 0.004)); c.restore(); }
+}
+function frMagazine(c, phase, t, li, I, dp){
+  if (phase !== "over") return;
+  const { W, H, u } = I, m = u * 0.06;
+  c.fillStyle = S.colMain; c.strokeStyle = S.colMain; c.textBaseline = "alphabetic";
+  if (dp.label && I.label) {
+    let fs = u * 0.13; c.font = `900 ${fs}px "Archivo", "Noto Sans JP", sans-serif`;
+    const w = c.measureText(I.label.toUpperCase()).width; if (w > W - m * 2) { fs *= (W - m * 2) / w; c.font = `900 ${fs}px "Archivo", "Noto Sans JP", sans-serif`; }
+    c.globalAlpha = 0.95; c.textAlign = "left"; c.fillText(I.label.toUpperCase().slice(0, 30), m - fs * 0.04, m + fs * 0.82);
+    c.lineWidth = Math.max(1.5, u * 0.003); c.beginPath(); c.moveTo(m, m + fs + u * 0.012); c.lineTo(W - m, m + fs + u * 0.012); c.stroke();
+    c.font = mono(u * 0.017); c.textBaseline = "top"; c.fillText(((I.sub || "ISSUE") + "   ·   " + (I.artist || "")).toUpperCase().slice(0, 60), m, m + fs + u * 0.025);
+  }
+  c.textBaseline = "alphabetic";
+  if (dp.num && li >= 0) { c.font = `900 ${u * 0.05}px "Archivo", sans-serif`; c.textAlign = "right"; c.fillStyle = S.colAcc; c.fillText("No." + String(li + 1).padStart(2, "0"), W - m, H - m * 1.6); }
+  if (dp.rail && (S.dpRail || I.artist)) { c.save(); c.translate(W - m * 0.55, H * 0.55); c.rotate(Math.PI / 2); c.font = mono(u * 0.016); c.textAlign = "center"; c.fillStyle = S.colMain; c.globalAlpha = 0.75; c.fillText((S.dpRail || I.artist).toUpperCase().slice(0, 50), 0, 0); c.restore(); }
+  if (dp.code) { c.fillStyle = "#fff"; const bw = u * 0.15, bh = u * 0.07, bx = m, by = H - m - bh; c.globalAlpha = 0.9; c.fillRect(bx - u * 0.01, by - u * 0.01, bw + u * 0.02, bh + u * 0.03); c.fillStyle = "#111"; let x = bx; for (let i = 0; x < bx + bw; i++) { const w = (1 + Math.floor(rnd(i * 2.3) * 3)) * u * 0.0018; if (i % 2 === 0) c.fillRect(x, by, w, bh * 0.8); x += w; } }
+  if (dp.bar) { c.globalAlpha = 0.85; c.fillStyle = S.colMain; c.font = mono(u * 0.016); c.textAlign = "right"; c.fillText(`${fmt(I.rt).replace(/\.\d+$/, "")} / ${fmt(I.d).replace(/\.\d+$/, "")}`, W - m, H - m * 0.7); }
+}
+
 function drawFrame(t){
   drawBg(t);
   tctx.setTransform(1, 0, 0, 1, 0, 0); tctx.clearRect(0, 0, S.W, S.H); tctx.globalAlpha = 1;
   let L = null, li = activeAt(t), outT = 0;
   if (li >= 0) { L = S.lines[li]; outT = outTime(li); }
   else { const T = titleLine(); if (T && t < T.out) { L = T; outT = T.out; li = -1; } }
-  if (L && L.ct) (S.preset === "big" ? drawBig : drawGlitch)(L, li, t, outT);
+  frameDeco("under", t, L && !L.title ? li : -1);
+  if (L && L.ct) drawLine(L, li, t, outT);
   const sp = composite(t, L && L.ct ? L : null, outT);
   overlays(t, sp);
-  deco(t, L && !L.title ? li : -1);
+  frameDeco("over", t, L && !L.title ? li : -1);
   if (S.fade.video && S.audio) { const g = fadeGain(t); if (g < 0.999) { ctx.globalAlpha = 1 - g; ctx.fillStyle = "#000"; ctx.fillRect(0, 0, S.W, S.H); ctx.globalAlpha = 1; } }
 }
 
@@ -1435,7 +1835,7 @@ async function record(){
 }
 function setRecUI(on){
   $("btnRec").textContent = on ? "■ 書き出しを中止" : "● 動画を書き出す";
-  document.querySelectorAll("#btnAuto,#btnTap,#btnPlay,#btnTop,#segSize button,#segPreset button,#btnLoad").forEach(el => el.disabled = on);
+  document.querySelectorAll("#btnAuto,#btnTap,#btnPlay,#btnTop,#segSize button,#presets button,#btnLoad").forEach(el => el.disabled = on);
 }
 $("btnRec").onclick = record;
 
@@ -1445,8 +1845,8 @@ function projectJSON(){
     format: "isumi-lyricmv", version: 1, saved: new Date().toISOString(),
     title: $("title").value.trim(), artist: $("artist").value.trim(),
     audio: S.audio ? S.audio.name : "", duration: +(dur() || 0).toFixed(3),
-    size: S.size, width: S.W, height: S.H, fps: 30, preset: S.preset,
-    style: { font: S.font, colMain: S.colMain, colAcc: S.colAcc, colAccText: S.colAccText, colDeco: S.colDeco, colDeco2: S.colDeco2, colBg: S.colBg, theme: S.theme, tdeco: S.tdeco, tdecoW: S.tdecoW, accStyle: S.accStyle, stroke: S.tdeco !== "none", size: S.sz, glitch: S.gl, dim: S.dim, bgMode: S.bgMode, deco: S.deco, hold: S.hold, decoParts: S.dp, decoText: S.dpText, decoSub: S.dpSub, decoRail: S.dpRail },
+    size: S.size, width: S.W, height: S.H, fps: 30, preset: S.preset, pos: S.pos, frame: S.frame,
+    style: { font: S.font, colMain: S.colMain, colAcc: S.colAcc, colAccText: S.colAccText, colDeco: S.colDeco, colDeco2: S.colDeco2, colBg: S.colBg, theme: S.theme, tdeco: S.tdeco, tdecoW: S.tdecoW, accStyle: S.accStyle, stroke: S.tdeco !== "none", size: S.sz, glitch: S.gl, dim: S.dim, bgMode: S.bgMode, bgTrans: S.bgTrans, bgTransDur: S.bgTransDur, deco: S.deco, hold: S.hold, decoParts: S.dp, decoText: S.dpText, decoSub: S.dpSub, decoRail: S.dpRail },
     backgrounds: S.bgs.map(b => b.name),
     cut: { in: S.range.in, out: S.range.out, fadeIn: S.fade.in, fadeOut: S.fade.out, fadeVideo: S.fade.video },
     lyrics: $("lyrics").value,
@@ -1474,7 +1874,9 @@ function loadProject(text, quiet){
   if (cut.fadeVideo != null) S.fade.video = !!cut.fadeVideo;
   $("fadeIn").value = S.fade.in; $("fadeOut").value = S.fade.out; $("fadeVid").checked = S.fade.video; fadeLabels();
   if (j.size) setSeg("segSize", j.size, v => { S.size = v; setSize(); });
-  if (j.preset) setSeg("segPreset", j.preset, v => (S.preset = v));
+  if (j.preset && PRESETS[j.preset]) S.preset = j.preset;
+  S.pos = POS_LABEL[j.pos] ? j.pos : "auto"; setSeg("segPos", S.pos);
+  S.frame = FRAMES[j.frame] ? j.frame : (st.deco === false ? "none" : "cyber"); S.deco = S.frame !== "none";
   if (st.font) { S.font = st.font; $("font").value = st.font; }
   CF.forEach(f => { if (HEX.test(st[f.k] || "")) S[f.k] = st[f.k].toLowerCase(); });
   S.theme = st.theme || "";
@@ -1486,7 +1888,8 @@ function loadProject(text, quiet){
   if (st.glitch != null) { S.gl = st.glitch; $("gl").value = Math.round(st.glitch * 100); }
   if (st.dim != null) { S.dim = st.dim; $("dimR").value = Math.round(st.dim * 100); }
   if (st.bgMode) setSeg("segBgMode", st.bgMode, v => (S.bgMode = v));
-  ["deco", "hold"].forEach(k => { if (st[k] != null) { S[k] = !!st[k]; $(k).checked = S[k]; } });
+  if (BG_TRANS[st.bgTrans]) S.bgTrans = st.bgTrans; if (typeof st.bgTransDur === "number") S.bgTransDur = clamp(st.bgTransDur, 0.2, 2); renderTrans();
+  if (st.hold != null) { S.hold = !!st.hold; $("hold").checked = S.hold; }
   if (st.decoParts) Object.keys(S.dp).forEach(k => { if (st.decoParts[k] != null) S.dp[k] = !!st.decoParts[k]; });
   S.dpText = st.decoText || ""; S.dpSub = st.decoSub || ""; S.dpRail = st.decoRail || "";
   syncDecoUI();
@@ -1504,7 +1907,67 @@ function autosave(){ clearTimeout(saveT); saveT = setTimeout(() => { try { local
 function setSeg(id, v, fn){ const box = $(id); box.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.v === v)); fn && fn(v); }
 function bindSeg(id, fn){ $(id).addEventListener("click", e => { const b = e.target.closest("button"); if (!b || b.disabled) return; setSeg(id, b.dataset.v, fn); layCache.clear(); S.dirty = true; autosave(); drawTL(); }); }
 bindSeg("segSize", v => { S.size = v; setSize(); });
-bindSeg("segPreset", v => { S.preset = v; const g = v === "glitch" ? 75 : 30; S.gl = g / 100; $("gl").value = g; refreshLabels(); });
+function renderPresets(){
+  $("presets").innerHTML = Object.entries(PRESETS).map(([k, p], i) => `<button type="button" class="pr${S.preset === k ? " on" : ""}" data-preset="${k}"><span class="ic">${String(i + 1).padStart(2, "0")}</span><b>${p.label}</b><small>${p.genre}</small></button>`).join("");
+}
+function renderFrames(){
+  $("frames").innerHTML = Object.entries(FRAMES).map(([k, f]) => `<button type="button" class="fr${S.frame === k ? " on" : ""}" data-frame="${k}"><canvas width="160" height="90" data-fprev="${k}"></canvas><b>${f.label}</b><small>${f.sub}</small></button>`).join("");
+  drawFramePreviews();
+}
+function drawFramePreviews(){
+  // render each frame at the real size, then shrink into the card
+  const keep = { frame: S.frame, W: S.W, H: S.H };
+  const tmp = document.createElement("canvas");
+  document.querySelectorAll("canvas[data-fprev]").forEach(pc => {
+    const k = pc.dataset.fprev, pctx = pc.getContext("2d");
+    pctx.fillStyle = S.colBg; pctx.fillRect(0, 0, pc.width, pc.height);
+    if (k === "none") { pctx.fillStyle = S.colMain; pctx.font = "700 14px 'Noto Sans JP'"; pctx.textAlign = "center"; pctx.textBaseline = "middle"; pctx.fillText("文字だけ", 80, 45); return; }
+    const W = 1920, H = 1080; tmp.width = W; tmp.height = H;
+    const tctx2 = tmp.getContext("2d"); tctx2.fillStyle = S.colBg; tctx2.fillRect(0, 0, W, H);
+    const save = { ctxRef: ctx };
+    S.frame = k; S.W = W; S.H = H; const sv = S.size; S.size = "h";
+    try { withCtx(tctx2, () => { frameDeco("under", 12, 2); frameDeco("over", 12, 2); }); } catch (e) {}
+    S.size = sv; S.W = keep.W; S.H = keep.H;
+    pctx.drawImage(tmp, 0, 0, pc.width, pc.height);
+  });
+  S.frame = keep.frame;
+}
+$("presets").addEventListener("click", e => {
+  const b = e.target.closest("[data-preset]"); if (!b || S.rec) return;
+  applyPreset(b.dataset.preset, $("presetAuto").checked);
+});
+function applyPreset(k, withLook){
+  const p = PRESETS[k]; if (!p) return;
+  S.preset = k;
+  S.gl = p.gl; $("gl").value = Math.round(p.gl * 100);
+  if (withLook) {
+    S.font = p.font; $("font").value = p.font;
+    S.tdeco = p.tdeco; S.frame = p.frame; S.deco = p.frame !== "none";
+    renderDecos(); renderFrames(); syncDecoUI(); loadFonts();
+  }
+  layCache.clear(); renderPresets(); refreshLabels(); S.dirty = true; autosave();
+}
+$("frames").addEventListener("click", e => {
+  const b = e.target.closest("[data-frame]"); if (!b) return;
+  S.frame = b.dataset.frame; S.deco = S.frame !== "none"; layCache.clear();
+  document.querySelectorAll("#frames .fr").forEach(x => x.classList.toggle("on", x === b));
+  syncDecoUI(); loadFrameFonts(); S.dirty = true; autosave();
+});
+$("presetAuto").onchange = e => { S.presetAuto = e.target.checked; autosave(); };
+bindSeg("segPos", v => { S.pos = v; layCache.clear(); });
+function renderTrans(){ $("bgTrans").innerHTML = Object.entries(BG_TRANS).map(([k, v]) => `<button type="button" data-tr="${k}" class="${S.bgTrans === k ? "on" : ""}">${v}</button>`).join(""); $("bgTD").disabled = S.bgTrans === "cut"; $("bgTDV").textContent = S.bgTrans === "cut" ? "—" : S.bgTransDur.toFixed(1) + "秒"; $("bgTD").value = S.bgTransDur; }
+$("bgTrans").addEventListener("click", e => { const b = e.target.closest("[data-tr]"); if (!b) return; S.bgTrans = b.dataset.tr; renderTrans(); S.dirty = true; autosave(); previewTransition(); });
+$("bgTD").oninput = e => { S.bgTransDur = +e.target.value; renderTrans(); S.dirty = true; autosave(); };
+$("bgTD").onchange = previewTransition;
+function previewTransition(){   // jump just before the next background change so the effect can be seen
+  if (S.playing || S.rec || S.bgs.length < 2 || S.bgMode === "fixed" || !S.audio) return;
+  const t = now(), s0 = segAt(t);
+  for (let sg = s0 + 1; sg < s0 + 50; sg++) { const st = segStartOf(sg); if (st > t + 0.05) { seek(Math.max(0, st - S.bgTransDur / 2 - 0.4)); flash(`切り替わりの少し前に移動しました。再生して「${BG_TRANS[S.bgTrans]}」を確認できます`, true); return; } if (sg > S.lines.length) break; }
+}
+function loadFrameFonts(){
+  const need = { cinema: '500 20px "Shippori Mincho B1"', wa: '400 20px "Yuji Syuku"', pop: '400 20px "Hachi Maru Pop"', vhs: '400 20px "DotGothic16"', neon: '400 20px "RocknRoll One"', minimal: '500 20px "Zen Kaku Gothic New"' }[S.frame];
+  if (need) document.fonts.load(need, "あア漢A").then(() => { S.dirty = true; drawFramePreviews(); }).catch(() => {});
+}
 bindSeg("segBgMode", v => (S.bgMode = v));
 async function loadFonts(){
   try { await document.fonts.load(fontStr(80, S.font), "あア漢Aー"); await document.fonts.load('900 80px "Archivo"'); await document.fonts.load('600 20px "JetBrains Mono"'); } catch (e) {}
@@ -1550,7 +2013,7 @@ const ACCS = [
 ];
 let palKey = null, recent = [];
 try { recent = JSON.parse(localStorage.getItem("isumi-lyricmv-recent") || "[]").filter(c => HEX.test(c)).slice(0, 10); } catch (e) {}
-function lookChanged(){ S.dirty = true; autosave(); drawPreviews(); }
+function lookChanged(){ S.dirty = true; autosave(); drawPreviews(); drawFramePreviews(); }
 function setColor(k, v, fromTheme){
   if (!HEX.test(v)) return false;
   S[k] = v.toLowerCase();
@@ -1591,12 +2054,12 @@ function drawPreviews(){
     S.accStyle = cv2.dataset.pacc; const size = 40;
     c.font = fontStr(size, S.font); c.textAlign = "left"; c.textBaseline = "middle";
     const chars = [..."強調"]; let x = 50; const row = { size, y: 35, chars: chars.map((ch, i) => { const w = c.measureText(ch).width; const o = { c: ch, i, x, w, acc: true }; x += w; return o; }) };
-    row.runs = [{ x0: row.chars[0].x, x1: x, first: 0 }];
+    row.runs = [{ x0: row.chars[0].x, x1: x, first: 0, ids: row.chars.map(o => o.i) }];
     drawRowDeco(c, row, null, 0, "under"); row.chars.forEach(o => glyph(c, o.c, o.x, row.y, size, "acc")); drawRowDeco(c, row, null, 0, "over");
   });
   S.accStyle = saveA;
 }
-function renderLook(){ renderThemes(); renderColors(); renderDecos(); $("dwV").textContent = Math.round(S.tdecoW * 100) + "%"; }
+function renderLook(){ renderThemes(); renderColors(); renderDecos(); $("dwV").textContent = Math.round(S.tdecoW * 100) + "%"; if (typeof renderPresets === "function") { renderPresets(); renderFrames(); } }
 $("themes").addEventListener("click", e => {
   const b = e.target.closest("[data-theme]"); if (!b) return;
   const th = THEMES.find(x => x.k === b.dataset.theme); if (!th) return;
@@ -1635,7 +2098,7 @@ $("gl").oninput = e => { S.gl = e.target.value / 100; refreshLabels(); S.dirty =
 $("dimR").oninput = e => { S.dim = e.target.value / 100; refreshLabels(); S.dirty = true; autosave(); };
 ["deco", "hold"].forEach(k => $(k).onchange = e => { S[k] = e.target.checked; S.dirty = true; drawTL(); autosave(); syncDecoUI(); });
 function syncDecoUI(){
-  $("decoParts").hidden = !S.deco;
+  $("decoParts").hidden = !S.frame || S.frame === "none";
   document.querySelectorAll("[data-dp]").forEach(c => { c.checked = !!S.dp[c.dataset.dp]; });
   $("dpText").value = S.dpText; $("dpSub").value = S.dpSub; $("dpRail").value = S.dpRail;
 }
@@ -1728,7 +2191,7 @@ $("status").classList.toggle("ok", SERVER || WEB);
 $("statusTxt").textContent = SERVER ? "自動タイミング ON（Whisper）" : WEB ? "WEB版 ／ タップでタイミング" : "単体モード（自動タイミングは bat から起動）";
 if (!SERVER) { $("btnAuto").hidden = true; $("btnTap").classList.add("solo"); $("btnTap").classList.remove("ghost"); }
 if (WEB) { $("btnWav").hidden = true; $("aeHint").hidden = true; $("btnSave").textContent = "タイミングを保存"; }
-setSize(); renderMedia(); refreshLabels(); renderLook(); syncDecoUI(); fadeLabels();
+setSize(); renderMedia(); refreshLabels(); renderLook(); renderPresets(); renderFrames(); syncDecoUI(); fadeLabels(); renderTrans();
 try { const a = localStorage.getItem("isumi-lyricmv-autosave"); if (a && loadProject(a, true) && S.lines.length) flash("前回の歌詞とタイミングを復元しました（曲と背景はもう一度ドロップしてください）", true); } catch (e) {}
 renderTable(); loadFonts(); drawTL();
 requestAnimationFrame(loop);
