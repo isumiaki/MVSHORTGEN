@@ -272,6 +272,50 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
 .trans button{border:1.5px solid #444;background:#000;padding:7px 4px;font-size:12.5px;font-weight:700;transition:border-color .15s}
 .trans button:hover{border-color:var(--ink)}
 .trans button.on{border-color:var(--y);background:var(--y);color:var(--bg)}
+.bgcam{border:1px solid #333;background:#0b0b0b;padding:10px;margin-top:8px}
+.bgcam-h{display:flex;align-items:center;gap:8px;justify-content:space-between;flex-wrap:wrap}
+.bgpick{display:flex;gap:5px;flex-wrap:wrap}
+.bgpick button{width:46px;height:46px;padding:0;border:1.5px solid #444;background:#000;position:relative;overflow:hidden}
+.bgpick button img,.bgpick button video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.bgpick button span{position:absolute;left:0;top:0;background:#000;color:#fff;font-family:var(--mono);font-size:9px;padding:0 3px}
+.bgpick button.on{border-color:var(--y);box-shadow:0 0 0 1px var(--y)}
+.bgpick button.on span{background:var(--y);color:var(--bg)}
+.moves{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:4px}
+.moves button{border:1.5px solid #444;background:#000;padding:6px 4px;font-size:12px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:1px;transition:border-color .15s}
+.moves button i{font-style:normal;font-size:16px;line-height:1.1;color:var(--mut)}
+.moves button:hover{border-color:var(--ink)}
+.moves button.on{border-color:var(--y);background:var(--y);color:var(--bg)}
+.moves button.on i{color:var(--bg)}
+.pats{display:flex;gap:4px;flex-wrap:wrap}
+.pats button{border:1px solid #444;background:transparent;padding:5px 10px;font-size:12.5px;font-weight:700}
+.pats button:hover{border-color:var(--y);color:var(--y)}
+.btn.edit-on{background:var(--y);color:var(--bg);border-color:var(--y)}
+.stage.bgedit canvas{cursor:grab;touch-action:none;outline:2px dashed var(--y);outline-offset:3px}
+.stage.bgedit.drag canvas{cursor:grabbing}
+.edithint{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);background:var(--y);color:var(--bg);font-size:11.5px;font-weight:800;padding:5px 10px;white-space:nowrap;max-width:calc(100% - 12px);overflow:hidden;text-overflow:ellipsis;pointer-events:none;z-index:3}
+.edithint[hidden]{display:none}
+.fp .panel-h{cursor:pointer;user-select:none}
+.fp .panel-h:hover .hd b{color:var(--y)}
+.fold{border:0;border-left:1.5px solid var(--line);background:transparent;width:48px;display:flex;align-items:center;justify-content:center;flex:none;cursor:pointer}
+.chev{width:10px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(2px) rotate(-135deg);transition:transform .2s ease;display:block;flex:none}
+.fp.closed .panel-h{border-bottom-color:transparent}
+.fp.closed > :not(.panel-h){display:none !important}
+.fp.closed .fold .chev{transform:translateY(-2px) rotate(45deg)}
+.fp.closed .grpall{display:none}
+.grp{border-bottom:1px solid #333}
+.grp:last-of-type{border-bottom:0}
+.grp > summary{list-style:none;display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;user-select:none;transition:background .15s}
+.grp > summary::-webkit-details-marker{display:none}
+.grp > summary:hover{background:#151515}
+.grp > summary:hover b{color:var(--y)}
+.grp > summary b{font-size:14px;font-weight:900;flex:none}
+.grp > summary .lbl{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grp > summary .gno{font-family:var(--mono);font-size:11px;font-weight:600;border:1px solid var(--ink);padding:1px 5px;flex:none}
+.grp[open] > summary .gno{background:var(--y);border-color:var(--y);color:var(--bg)}
+.grp > summary .chev{color:var(--mut);margin-right:4px}
+.grp:not([open]) > summary .chev{transform:translateY(-2px) rotate(45deg)}
+.grp-b{padding:0 14px 14px}
+.grp-b > .field-l:first-child,.grp-b > .cutbox:first-child{margin-top:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (max-width:1100px){.grid{grid-template-columns:1fr}.sticky{position:static}}
 @media (max-width:600px){.rail{display:none}.mast{padding:12px 16px 0}.wrap{padding:12px 16px 26px}footer{margin:0 16px}.two{grid-template-columns:1fr}.ln{grid-template-columns:24px 1fr 56px 56px}.ln .bt{grid-column:1/-1;justify-content:flex-end}}
@@ -322,7 +366,7 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
       <h3>素材を入れる<small>01 素材</small></h3>
       <ol>
         <li><em>曲</em>（mp3 / wav / m4a）を「曲・背景・保存データ」の枠にドラッグ＆ドロップ。スマホは「選ぶ」から。</li>
-        <li><em>背景</em>の画像や動画を入れる（複数OK）。何行ごとに切り替えるか、切り替え方（クロスフェード・ズーム・スライド・ワイプ・フラッシュ・グリッチ・カット）と長さは「03 演出」で選べます。入れなければ単色の背景になります。</li>
+        <li><em>背景</em>の画像や動画を入れる（複数OK）。何行ごとに切り替えるか、切り替え方（クロスフェード・ズーム・スライド・ワイプ・フラッシュ・グリッチ・カット）と長さは「03 演出」で選べます。画像が1枚だけのときは切り替えず、ゆっくり寄ったり引いたりを続けます。「背景の動き」で画像ごとにズームイン・左へ流すなどの動きを選べ、「プレビューで位置を合わせる」を押すとプレビューの画像をドラッグで動かしたり、ホイール（スマホは2本指）で拡大したりできます。入れなければ単色の背景になります。</li>
         <li><em>歌詞</em>を「1行＝1フレーズ」で貼る。行の中のスペースのところで段を変えて、画面いっぱいに大きく組みます。</li>
         <li>目立たせたい言葉は <em>*走り出せ*</em> のように * で囲む。大胆タイポでは黄色の帯、グリッチでは色付きの文字になります。</li>
         <li>曲名を入れると、歌が始まるまでの間にタイトルが出ます（歌い出しまで 1.6 秒以上あるとき）。</li>
@@ -429,7 +473,7 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
     <section class="panel sticky" aria-label="プレビュー">
       <div class="panel-h"><div class="no">00</div><div class="hd"><b>プレビュー</b><span class="lbl" id="cvInfo">1080 × 1920 · 9:16</span></div>
         <div class="tools"><div class="seg" id="segSize" style="min-width:150px"><button type="button" data-v="v" class="on">9:16 縦</button><button type="button" data-v="h">16:9 横</button></div></div></div>
-      <div class="stage"><span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span><canvas id="cv" width="1080" height="1920"></canvas></div>
+      <div class="stage"><span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span><canvas id="cv" width="1080" height="1920"></canvas><div class="edithint" id="editHint" hidden>ドラッグで位置 ／ ホイール・2本指で拡大 ／ ダブルクリックで元に戻す</div></div>
       <div class="transport">
         <button type="button" class="btn" id="btnPlay" style="min-width:96px">▶ 再生</button>
         <button type="button" class="mini" id="btnTop" title="先頭へ">|◀</button>
@@ -453,8 +497,8 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
 
   <!-- ============ RIGHT: controls ============ -->
   <div class="col">
-    <section class="panel" aria-label="素材">
-      <div class="panel-h"><div class="no">01</div><div class="hd"><b>素材</b><span class="lbl">Audio / Background / Lyrics</span></div></div>
+    <section class="panel fp" data-panel="p01" aria-label="素材">
+      <div class="panel-h"><div class="no">01</div><div class="hd"><b>素材</b><span class="lbl">Audio / Background / Lyrics</span></div><button type="button" class="fold" data-fold="p01" aria-expanded="true" aria-label="この項目をしまう"><i class="chev" aria-hidden="true"></i></button></div>
       <div class="sec">
         <div class="drop" id="drop">
           <div class="arrow" aria-hidden="true">↓</div>
@@ -474,8 +518,8 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
       </div>
     </section>
 
-    <section class="panel" aria-label="タイミング">
-      <div class="panel-h"><div class="no">02</div><div class="hd"><b>タイミング</b><span class="lbl">Auto align / Tap / Fine tune</span></div></div>
+    <section class="panel fp" data-panel="p02" aria-label="タイミング">
+      <div class="panel-h"><div class="no">02</div><div class="hd"><b>タイミング</b><span class="lbl">Auto align / Tap / Fine tune</span></div><button type="button" class="fold" data-fold="p02" aria-expanded="true" aria-label="この項目をしまう"><i class="chev" aria-hidden="true"></i></button></div>
       <div class="sec">
         <div class="two">
           <button type="button" class="btn" id="btnAuto">自動で合わせる</button>
@@ -498,18 +542,33 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
       </div>
     </section>
 
-    <section class="panel" aria-label="演出">
-      <div class="panel-h"><div class="no">03</div><div class="hd"><b>演出</b><span class="lbl">Preset / Type / Look</span></div></div>
-      <div class="sec">
+    <section class="panel fp" data-panel="p03" aria-label="演出">
+      <div class="panel-h"><div class="no">03</div><div class="hd"><b>演出</b><span class="lbl">Preset / Type / Look</span></div><div class="tools"><button type="button" class="mini grpall" data-all="p03">全部しまう</button></div><button type="button" class="fold" data-fold="p03" aria-expanded="true" aria-label="この項目をしまう"><i class="chev" aria-hidden="true"></i></button></div>
+      <div class="grps">
+        <details class="grp" data-grp="pre" open>
+          <summary><span class="gno">A</span><b>文字のプリセット・位置</b><span class="lbl">Preset / Position</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="grp-b">
         <span class="field-l lbl" style="margin-top:0">文字のプリセット（動きと組み方）</span>
         <div class="presets" id="presets"></div>
         <label class="pchk"><input type="checkbox" id="presetAuto" checked> プリセットを選んだら、おすすめのフォント・文字の装飾・画面の装飾にも切り替える</label>
         <span class="field-l lbl">文字の位置</span>
         <div class="seg" id="segPos"><button type="button" data-v="auto" class="on">おまかせ</button><button type="button" data-v="top">上</button><button type="button" data-v="mid">真ん中</button><button type="button" data-v="bot">下</button></div>
+
+          </div>
+        </details>
+        <details class="grp" data-grp="col" open>
+          <summary><span class="gno">B</span><b>色</b><span class="lbl">Theme / Color</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="grp-b">
         <span class="field-l lbl">カラーテーマ（押すと全部の色がまとめて変わる）</span>
         <div class="themes" id="themes"></div>
         <span class="field-l lbl">色（四角を押すとパレット・コード入力もOK）</span>
         <div class="cfs" id="cfs"></div>
+
+          </div>
+        </details>
+        <details class="grp" data-grp="typ" open>
+          <summary><span class="gno">C</span><b>文字の見た目</b><span class="lbl">Deco / Font / Size</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="grp-b">
         <span class="field-l lbl">文字の装飾</span>
         <div class="decos" id="decos"></div>
         <label class="field-l lbl" for="dw">装飾の太さ <span id="dwV">100%</span></label><input type="range" id="dw" min="20" max="250" value="100">
@@ -538,13 +597,50 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
         </select>
         <label class="field-l lbl" for="sz">文字の大きさ <span id="szV">100%</span></label><input type="range" id="sz" min="50" max="150" value="100">
         <label class="field-l lbl" for="gl">グリッチの強さ <span id="glV">30</span></label><input type="range" id="gl" min="0" max="100" value="30">
+        <div class="row"><div class="k">歌詞を次の行まで残す<small>オフ：歌い終わりで消える</small></div><label class="sw"><input type="checkbox" id="hold" checked><i></i><span class="sr">歌詞を残す</span></label></div>
+
+          </div>
+        </details>
+        <details class="grp" data-grp="bg" open>
+          <summary><span class="gno">D</span><b>背景</b><span class="lbl">Dim / Switch / Transition</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="grp-b">
         <label class="field-l lbl" for="dimR">背景の暗さ <span id="dimV">45%</span></label><input type="range" id="dimR" min="0" max="90" value="45">
         <span class="field-l lbl">背景の切り替え</span>
         <div class="seg" id="segBgMode"><button type="button" data-v="fixed">固定</button><button type="button" data-v="1">1行ごと</button><button type="button" data-v="2" class="on">2行ごと</button><button type="button" data-v="4">4行ごと</button></div>
         <span class="field-l lbl">背景の切り替え方</span>
         <div class="trans" id="bgTrans"></div>
         <label class="field-l lbl" for="bgTD">切り替えの長さ <span class="fadeval" id="bgTDV">0.8秒</span></label><input type="range" id="bgTD" min="0.2" max="2" step="0.1" value="0.8">
-        <span class="field-l lbl">画面の装飾（フレーム）</span>
+
+          </div>
+        </details>
+        <details class="grp" data-grp="cam" open>
+          <summary><span class="gno">E</span><b>背景の動き（カメラワーク）</b><span class="lbl">Motion / Framing</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="grp-b">
+        <div class="bgcam" id="bgCam">
+          <div class="hint" id="bgCamEmpty" style="margin:0">背景の画像を入れると、1枚ずつ「動き」と「見せる位置・大きさ」を決められます。</div>
+          <div id="bgCamBody" hidden>
+            <span class="field-l lbl" style="margin-top:0">まとめて設定</span>
+            <div class="pats" id="bgPats"></div>
+            <div class="bgcam-h" style="margin-top:10px"><span class="lbl">調整する画像</span><span class="lbl" id="bgSelName"></span></div>
+            <div class="bgpick" id="bgPick"></div>
+            <span class="field-l lbl">この画像の動き</span>
+            <div class="moves" id="bgMoves"></div>
+            <label class="field-l lbl" for="bgAmt">動きの大きさ <span id="bgAmtV">100%</span></label><input type="range" id="bgAmt" min="0" max="200" value="100">
+            <label class="field-l lbl" for="bgZoom">拡大率 <span id="bgZoomV">100%</span></label><input type="range" id="bgZoom" min="100" max="400" value="100">
+            <div class="two" style="margin-top:8px">
+              <button type="button" class="btn ghost" id="bgEditBtn">プレビューで位置を合わせる</button>
+              <button type="button" class="btn ghost" id="bgAllBtn">この設定を全部の画像に</button>
+            </div>
+            <div class="hint" id="bgCamHint">「位置を合わせる」を押すと、プレビューの画像をドラッグで動かせます。点線の枠は動きの終わりの見え方です。</div>
+          </div>
+        </div>
+
+          </div>
+        </details>
+        <details class="grp" data-grp="frm" open>
+          <summary><span class="gno">F</span><b>画面の装飾（フレーム）</b><span class="lbl">Frame / Parts</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="grp-b">
+        <span class="field-l lbl">フレームの種類</span>
         <div class="frames" id="frames"></div>
         <input type="checkbox" id="deco" checked hidden>
         <div class="decoparts" id="decoParts">
@@ -561,13 +657,18 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
           </div>
           <label class="field-l lbl" for="dpRail">アーティスト欄・縦の文字（空欄ならアーティスト名と曲名）</label><input type="text" id="dpRail" placeholder="例）OFFICIAL LYRIC VIDEO" maxlength="60">
         </div>
-        <div class="row"><div class="k">歌詞を次の行まで残す<small>オフ：歌い終わりで消える</small></div><label class="sw"><input type="checkbox" id="hold" checked><i></i><span class="sr">歌詞を残す</span></label></div>
+
+          </div>
+        </details>
       </div>
     </section>
 
-    <section class="panel" aria-label="書き出し">
-      <div class="panel-h"><div class="no">04</div><div class="hd"><b>書き出し</b><span class="lbl">Render / Save / After Effects</span></div></div>
-      <div class="sec">
+    <section class="panel fp" data-panel="p04" aria-label="書き出し">
+      <div class="panel-h"><div class="no">04</div><div class="hd"><b>書き出し</b><span class="lbl">Render / Save / After Effects</span></div><div class="tools"><button type="button" class="mini grpall" data-all="p04">全部しまう</button></div><button type="button" class="fold" data-fold="p04" aria-expanded="true" aria-label="この項目をしまう"><i class="chev" aria-hidden="true"></i></button></div>
+      <div class="grps">
+        <details class="grp" data-grp="cut" open>
+          <summary><span class="gno">A</span><b>カット・フェード</b><span class="lbl">Cut / Fade</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="grp-b">
         <div class="cutbox">
           <div class="row" style="padding-top:0"><div class="k">カット（使う長さ）<small id="rangeTxt">曲の全体</small></div><button type="button" class="mini" id="btnCutPlay">▶ 範囲を試聴</button></div>
           <div class="two">
@@ -581,19 +682,34 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
           <button type="button" class="btn ghost" id="btnWav" style="width:100%;margin-top:8px">✂ カットした音だけ書き出す（WAV）</button>
           <div class="hint" style="margin-top:8px">タイムラインの黄色い線（開始・終了）はドラッグで動かせます。フェードは 0 にすると無しになります。</div>
         </div>
+
+          </div>
+        </details>
+        <details class="grp" data-grp="rec" open>
+          <summary><span class="gno">B</span><b>動画を書き出す</b><span class="lbl">Render</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="grp-b">
         <button type="button" class="btn rec big" id="btnRec">● 動画を書き出す</button>
         <div class="prog"><i id="recBar"></i></div>
         <div class="prog-meta"><span id="recTxt">待機中</span><b id="recPct">0%</b></div>
         <div class="hint">書き出しは<b>実際の再生と同じ時間</b>がかかります。終わるまでこのタブを表示したままにしてください（別のタブに切り替えると止まります）。</div>
-        <div class="two" style="margin-top:12px">
+
+          </div>
+        </details>
+        <details class="grp" data-grp="sav" open>
+          <summary><span class="gno">C</span><b>保存・After Effects</b><span class="lbl">Save / AE</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="grp-b">
+        <div class="two">
           <button type="button" class="btn ghost" id="btnSave">タイミングを保存（AE用）</button>
           <button type="button" class="btn ghost" id="btnLoad">保存データを開く</button>
         </div>
         <input type="file" id="inJson" accept=".json,application/json" hidden>
         <div class="hint" id="aeHint">保存した <b>.json</b> を After Effects の「LyricMV_Build.jsx」で読み込むと、同じタイミングで MV のコンポジションが組み上がります。曲の mp3 と背景は .json と同じフォルダに置いてください。</div>
-        <div class="msg" id="msg"></div>
+
+          </div>
+        </details>
       </div>
     </section>
+    <div class="msg" id="msg" role="status"></div>
   </div>
 </div>
 </div>
@@ -625,7 +741,7 @@ const POOL = "アイウエオカキクケコサシスセソタチツテトナニ
 const S = {
   size: "v", W: 1080, H: 1920, preset: "big", font: "Noto Sans JP",
   colMain: "#ffffff", colAcc: "#ffe600", colAccText: "#0a0a0a", colDeco: "#000000", colDeco2: "#e60012", colBg: "#0a0a0a",
-  tdeco: "stroke", tdecoW: 1, accStyle: "band", theme: "isumi", pos: "auto", frame: "cyber", presetAuto: true, bgTrans: "fade", bgTransDur: 0.8,
+  tdeco: "stroke", tdecoW: 1, accStyle: "band", theme: "isumi", pos: "auto", frame: "cyber", presetAuto: true, bgTrans: "fade", bgTransDur: 0.8, bgSel: 0, bgEdit: false, bgFxLoad: {},
   sz: 1, gl: 0.3, dim: 0.45, bgMode: "2", deco: true, hold: true,
   dp: { label: true, num: true, bar: true, code: true, rail: true }, dpText: "", dpSub: "", dpRail: "",
   lines: [], audio: null, peaks: null, peakRate: 100, bgs: [],
@@ -847,19 +963,82 @@ function segStartOf(seg){
   for (let k = first; k < Math.min(S.lines.length, first + n); k++) if (S.lines[k].t0 != null) return S.lines[k].t0;
   return 0;
 }
-function drawBgSeg(seg, t, alpha, extra){
-  const W = S.W, H = S.H, b = S.bgs[seg % S.bgs.length], el = b && b.el; if (!el) return;
-  const iw = b.type === "video" ? el.videoWidth : el.naturalWidth, ih = b.type === "video" ? el.videoHeight : el.naturalHeight;
-  if (!iw || !ih) return;
-  const st = segStartOf(seg), k = clamp((t - st + 0.6) / 9.6);      // slow push-in continues through the transition
-  const e = extra || {};
-  const z = (1.02 + 0.07 * k) * (e.zoom || 1);
-  const s = Math.max(W / iw, H / ih) * z, dw = iw * s, dh = ih * s;
-  const drift = (seg % 2 ? -1 : 1) * (dw - W) * 0.25 * k;
+function oneBg(){ return S.bgMode === "fixed" || S.bgs.length === 1; }   // the same picture all the way through
+/* camera: each picture has a motion (preset) + framing (zoom, x, y) set by dragging on the preview */
+const BG_MOVES = [
+  ["auto", "おまかせ", "◎"], ["still", "止める", "■"], ["zin", "ズームイン", "＋"], ["zout", "ズームアウト", "－"],
+  ["left", "左へ流す", "←"], ["right", "右へ流す", "→"], ["up", "上へ流す", "↑"], ["down", "下へ流す", "↓"],
+  ["diag", "斜めに寄る", "↗"], ["breath", "ゆらぎ", "∿"] ];
+const BG_PATTERNS = { auto: ["おまかせ", ["auto"]], push: ["寄り・引き交互", ["zin", "zout"]], flow: ["左右に流す", ["left", "right"]],
+  mix: ["いろいろ", ["zin", "left", "zout", "right", "diag", "up"]], calm: ["ゆったり", ["breath"]], still: ["止める", ["still"]] };
+function fxOf(b){ if (!b.fx) b.fx = { move: "auto", amt: 1, zoom: 1, x: 0, y: 0 }; return b.fx; }
+function totalDur(){ const d = dur(); if (d) return d; let m = 0; S.lines.forEach(L => { if (L.t1 != null) m = Math.max(m, L.t1); }); return m + 2 || 10; }
+function bgSpan(seg){      // [start, end, segment start] of the time this picture is on screen
+  const T = totalDur(); if (oneBg()) return [0, T, 0];
+  const d = S.bgTrans === "cut" ? 0 : S.bgTransDur, st = segStartOf(seg), nx = segStartOf(seg + 1);
+  return [seg > 0 ? Math.max(0, st - d / 2) : 0, nx > st ? nx + d / 2 : T, st];
+}
+// shared with the AE script (LyricMV_Build.jsx camK / camAt): keep both in step
+function camK(m, t, A, B, A0, one){
+  if (m === "auto") { if (one) return 0.5 - 0.5 * Math.cos(t * Math.PI * 2 / 24); const q = clamp((t - A0 + 0.6) / 9.6); return q * q * (3 - 2 * q); }
+  if (m === "breath") return 0.5 - 0.5 * Math.cos(t * Math.PI * 2 / 16);
+  if (m === "still") return 0;
+  return 0.5 - 0.5 * Math.cos(Math.PI * clamp((t - A) / Math.max(0.1, B - A)));
+}
+function camAt(W, H, iw, ih, fx, k, dir){
+  const a = fx.amt, base = Math.max(W / iw, H / ih) * fx.zoom; let z = 1, px = 0, py = 0;
+  switch (fx.move) {
+    case "auto": z = 1.02 + 0.07 * k; px = dir * 0.25 * k * (iw * base * z - W) / W; break;
+    case "zin": z = 1 + 0.2 * a * k; break;
+    case "zout": z = 1 + 0.2 * a * (1 - k); break;
+    case "left": z = 1 + 0.16 * a; px = 0.065 * a * (1 - 2 * k); break;
+    case "right": z = 1 + 0.16 * a; px = -0.065 * a * (1 - 2 * k); break;
+    case "up": z = 1 + 0.16 * a; py = 0.065 * a * (1 - 2 * k) * W / H; break;
+    case "down": z = 1 + 0.16 * a; py = -0.065 * a * (1 - 2 * k) * W / H; break;
+    case "diag": z = 1 + 0.2 * a * k; px = -0.05 * a * k; py = 0.05 * a * k * W / H; break;
+    case "breath": z = 1.03 + 0.06 * a * k; px = 0.02 * a * (k - 0.5); break;
+  }
+  const s = base * z, dw = iw * s, dh = ih * s;
+  let cx = W / 2 + (fx.x + px) * W, cy = H / 2 + (fx.y + py) * H;
+  cx = Math.min(dw / 2, Math.max(W - dw / 2, cx)); cy = Math.min(dh / 2, Math.max(H - dh / 2, cy));   // never show an empty edge
+  return { s, cx, cy, dw, dh };
+}
+function bgSize(b){ const el = b && b.el; if (!el) return null; const iw = b.type === "video" ? el.videoWidth : el.naturalWidth, ih = b.type === "video" ? el.videoHeight : el.naturalHeight; return iw && ih ? [iw, ih] : null; }
+function camFor(seg, t, b){
+  const sz = bgSize(b); if (!sz) return null;
+  const fx = fxOf(b), [A, B, A0] = bgSpan(seg), one = oneBg();
+  return camAt(S.W, S.H, sz[0], sz[1], fx, camK(fx.move, t, A, B, A0, one), one ? 1 : (seg % 2 ? -1 : 1));
+}
+function drawBgSeg(seg, t, alpha, extra, camOverride){
+  const W = S.W, H = S.H, b = S.bgs[seg % S.bgs.length]; if (!b) return;
+  const c = camOverride || camFor(seg, t, b); if (!c) return;
+  const e = extra || {}, zm = e.zoom || 1;
+  const dw = c.dw * zm, dh = c.dh * zm, cx = W / 2 + (c.cx - W / 2) * zm, cy = H / 2 + (c.cy - H / 2) * zm;
   ctx.save(); ctx.globalAlpha = clamp(alpha);
   if (e.blur > 0.5) ctx.filter = `blur(${e.blur.toFixed(1)}px)`;
   if (e.clip) { ctx.beginPath(); e.clip(ctx); ctx.clip(); }
-  try { ctx.drawImage(el, (W - dw) / 2 + drift + (e.dx || 0), (H - dh) / 2 + (e.dy || 0), dw, dh); } catch (err) {}
+  try { ctx.drawImage(b.el, cx - dw / 2 + (e.dx || 0), cy - dh / 2 + (e.dy || 0), dw, dh); } catch (err) {}
+  ctx.restore();
+}
+function bgEditing(){ return S.bgEdit && !S.playing && !S.rec && S.bgs[S.bgSel]; }
+function firstSegOf(i){ if (oneBg()) return 0; for (let sg = 0; sg <= S.lines.length + 1; sg++) if (sg % S.bgs.length === i && (sg === 0 || segStartOf(sg) > 0)) return sg; return i; }
+function drawBgEdit(){      // the picture being adjusted: its first frame, plus a dashed frame showing where the camera ends up
+  const W = S.W, H = S.H, b = S.bgs[S.bgSel], sz = bgSize(b); if (!sz) return;
+  const fx = fxOf(b), seg = firstSegOf(S.bgSel), [A, B, A0] = bgSpan(seg), one = oneBg(), dir = one ? 1 : (seg % 2 ? -1 : 1);
+  const loop = fx.move === "breath" || (fx.move === "auto" && one);
+  const c0 = camAt(W, H, sz[0], sz[1], fx, loop ? 0 : camK(fx.move, A, A, B, A0, one), dir);
+  const c1 = camAt(W, H, sz[0], sz[1], fx, loop ? 1 : camK(fx.move, B, A, B, A0, one), dir);
+  drawBgSeg(seg, A, 1, null, c0);
+  if (S.dim > 0) { ctx.fillStyle = `rgba(0,0,0,${S.dim})`; ctx.fillRect(0, 0, W, H); }
+  const r = c0.s / c1.s, x0 = c0.cx + (0 - c1.cx) * r, y0 = c0.cy + (0 - c1.cy) * r;   // end view, drawn on the start picture
+  ctx.save(); const lw = Math.max(3, W * 0.004);
+  ctx.strokeStyle = "rgba(255,255,255,.28)"; ctx.lineWidth = lw * 0.5;
+  for (let i = 1; i < 3; i++) { ctx.beginPath(); ctx.moveTo(W * i / 3, 0); ctx.lineTo(W * i / 3, H); ctx.moveTo(0, H * i / 3); ctx.lineTo(W, H * i / 3); ctx.stroke(); }
+  if (fx.move !== "still" && (Math.abs(r - 1) > 0.004 || Math.abs(x0) > 2 || Math.abs(y0) > 2)) {
+    ctx.strokeStyle = S.colAcc; ctx.lineWidth = lw; ctx.setLineDash([lw * 4, lw * 3]); ctx.strokeRect(x0, y0, W * r, H * r);
+    ctx.setLineDash([]); ctx.fillStyle = S.colAcc; ctx.font = `900 ${Math.round(W * 0.03)}px 'Noto Sans JP',sans-serif`; ctx.textBaseline = "top";
+    ctx.fillText(loop ? "ゆれ幅" : "動きの終わり", Math.max(10, x0 + lw * 2), Math.max(10, y0 + lw * 2));
+  }
   ctx.restore();
 }
 const BG_TRANS = { fade: "クロスフェード", zoom: "ズーム", slide: "スライド", wipe: "ワイプ", flash: "フラッシュ", glitch: "グリッチ", cut: "カット" };
@@ -867,11 +1046,12 @@ function drawBg(t){
   const W = S.W, H = S.H;
   ctx.globalCompositeOperation = "source-over"; ctx.globalAlpha = 1; ctx.filter = "none";
   ctx.fillStyle = S.colBg; ctx.fillRect(0, 0, W, H);
+  if (bgEditing()) { drawBgEdit(); return; }
   if (S.bgs.length) {
     const d = S.bgTrans === "cut" ? 0 : Math.max(0.05, S.bgTransDur);
     const a = segAt(t - d / 2), b = segAt(t + d / 2);
-    const differ = a !== b && (a % S.bgs.length !== b % S.bgs.length || S.bgs.length > 1);
-    if (!differ || d === 0) drawBgSeg(segAt(t), t, 1);
+    const differ = a !== b && !oneBg();
+    if (!differ || d === 0) drawBgSeg(oneBg() ? 0 : segAt(t), t, 1);
     else {
       const bound = segStartOf(b), p = clamp((t - (bound - d / 2)) / d), e = p * p * (3 - 2 * p);   // smoothstep
       switch (S.bgTrans) {
@@ -1398,8 +1578,10 @@ function addBg(file){
   const url = URL.createObjectURL(file);
   const el = isV ? Object.assign(document.createElement("video"), { muted: true, loop: true, playsInline: true, src: url, preload: "auto" }) : new Image();
   if (!isV) el.src = url;
-  el.onload = el.onloadeddata = () => { S.dirty = true; };
-  S.bgs.push({ type: isV ? "video" : "img", name: file.name, url, el });
+  el.onload = el.onloadeddata = () => { S.dirty = true; renderBgCam(); };
+  const g = { type: isV ? "video" : "img", name: file.name, url, el };
+  const lf = S.bgFxLoad[file.name]; if (lf) g.fx = { move: "auto", amt: 1, zoom: 1, x: 0, y: 0, ...lf };
+  S.bgs.push(g);
   if (isV && S.playing) el.play().catch(() => {});
   renderMedia(); S.dirty = true;
 }
@@ -1408,8 +1590,9 @@ function renderMedia(){
   const rm = $("rmAudio"); if (rm) rm.onclick = () => { au.pause(); au.removeAttribute("src"); URL.revokeObjectURL(S.audio.url); S.audio = null; S.peaks = null; renderMedia(); drawTL(); S.dirty = true; };
   $("thumbs").innerHTML = S.bgs.map((b, i) => `<div class="t" title="${esc(b.name)}">${b.type === "video" ? `<video src="${b.url}" muted></video>` : `<img src="${b.url}" alt="">`}<span>${String(i + 1).padStart(2, "0")}</span><button type="button" data-rmbg="${i}" aria-label="外す">×</button></div>`).join("")
     + (S.bgs.length ? "" : `<span class="lbl" style="padding:4px 0">背景：未設定（単色）</span>`);
+  renderBgCam();
 }
-$("thumbs").addEventListener("click", e => { const b = e.target.closest("[data-rmbg]"); if (!b) return; const i = +b.dataset.rmbg; const g = S.bgs.splice(i, 1)[0]; if (g) { try { g.el.pause && g.el.pause(); } catch (_) {} URL.revokeObjectURL(g.url); } renderMedia(); S.dirty = true; });
+$("thumbs").addEventListener("click", e => { const b = e.target.closest("[data-rmbg]"); if (!b) return; const i = +b.dataset.rmbg; const g = S.bgs.splice(i, 1)[0]; if (S.bgSel >= i && S.bgSel > 0) S.bgSel--; if (g) { try { g.el.pause && g.el.pause(); } catch (_) {} URL.revokeObjectURL(g.url); } renderMedia(); S.dirty = true; });
 
 async function handleFiles(files){
   for (const f of files) {
@@ -1447,7 +1630,7 @@ async function play(){
   try { await au.play(); } catch (e) { return; }
 }
 function pause(){ au.pause(); }
-au.addEventListener("play", () => { S.playing = true; $("btnPlay").textContent = "❚❚ 停止"; S.bgs.forEach(b => b.type === "video" && b.el.play().catch(() => {})); });
+au.addEventListener("play", () => { if (S.bgEdit) setBgEdit(false); S.playing = true; $("btnPlay").textContent = "❚❚ 停止"; S.bgs.forEach(b => b.type === "video" && b.el.play().catch(() => {})); });
 au.addEventListener("pause", () => { S.playing = false; $("btnPlay").textContent = "▶ 再生"; S.bgs.forEach(b => b.type === "video" && b.el.pause()); S.dirty = true; });
 au.addEventListener("seeked", () => { S.dirty = true; });
 au.addEventListener("ended", () => { if (S.tap.on) endTap(); });
@@ -1846,7 +2029,7 @@ function projectJSON(){
     title: $("title").value.trim(), artist: $("artist").value.trim(),
     audio: S.audio ? S.audio.name : "", duration: +(dur() || 0).toFixed(3),
     size: S.size, width: S.W, height: S.H, fps: 30, preset: S.preset, pos: S.pos, frame: S.frame,
-    style: { font: S.font, colMain: S.colMain, colAcc: S.colAcc, colAccText: S.colAccText, colDeco: S.colDeco, colDeco2: S.colDeco2, colBg: S.colBg, theme: S.theme, tdeco: S.tdeco, tdecoW: S.tdecoW, accStyle: S.accStyle, stroke: S.tdeco !== "none", size: S.sz, glitch: S.gl, dim: S.dim, bgMode: S.bgMode, bgTrans: S.bgTrans, bgTransDur: S.bgTransDur, deco: S.deco, hold: S.hold, decoParts: S.dp, decoText: S.dpText, decoSub: S.dpSub, decoRail: S.dpRail },
+    style: { font: S.font, colMain: S.colMain, colAcc: S.colAcc, colAccText: S.colAccText, colDeco: S.colDeco, colDeco2: S.colDeco2, colBg: S.colBg, theme: S.theme, tdeco: S.tdeco, tdecoW: S.tdecoW, accStyle: S.accStyle, stroke: S.tdeco !== "none", size: S.sz, glitch: S.gl, dim: S.dim, bgMode: S.bgMode, bgTrans: S.bgTrans, bgTransDur: S.bgTransDur, bgFx: Object.fromEntries(S.bgs.map(b => [b.name, fxOf(b)])), deco: S.deco, hold: S.hold, decoParts: S.dp, decoText: S.dpText, decoSub: S.dpSub, decoRail: S.dpRail },
     backgrounds: S.bgs.map(b => b.name),
     cut: { in: S.range.in, out: S.range.out, fadeIn: S.fade.in, fadeOut: S.fade.out, fadeVideo: S.fade.video },
     lyrics: $("lyrics").value,
@@ -1889,6 +2072,7 @@ function loadProject(text, quiet){
   if (st.dim != null) { S.dim = st.dim; $("dimR").value = Math.round(st.dim * 100); }
   if (st.bgMode) setSeg("segBgMode", st.bgMode, v => (S.bgMode = v));
   if (BG_TRANS[st.bgTrans]) S.bgTrans = st.bgTrans; if (typeof st.bgTransDur === "number") S.bgTransDur = clamp(st.bgTransDur, 0.2, 2); renderTrans();
+  if (st.bgFx && typeof st.bgFx === "object") { S.bgFxLoad = st.bgFx; S.bgs.forEach(g => { const f = st.bgFx[g.name]; if (f) g.fx = { move: "auto", amt: 1, zoom: 1, x: 0, y: 0, ...f }; }); renderBgCam(); }
   if (st.hold != null) { S.hold = !!st.hold; $("hold").checked = S.hold; }
   if (st.decoParts) Object.keys(S.dp).forEach(k => { if (st.decoParts[k] != null) S.dp[k] = !!st.decoParts[k]; });
   S.dpText = st.decoText || ""; S.dpSub = st.decoSub || ""; S.dpRail = st.decoRail || "";
@@ -2152,6 +2336,104 @@ $("guide").addEventListener("click", e => { if (e.target.id === "guide") closeGu
 edFilter();
 try { if (!localStorage.getItem("isumi-lyricmv-welcomed")) $("welcome").hidden = false; } catch (e) { $("welcome").hidden = false; }
 
+/* ================= fold (しまう／ひらく) ================= */
+const FOLD_KEY = "isumi-lyricmv-fold";
+let foldState = {}; try { foldState = JSON.parse(localStorage.getItem(FOLD_KEY) || "{}") || {}; } catch (e) {}
+function saveFold(){ try { localStorage.setItem(FOLD_KEY, JSON.stringify(foldState)); } catch (e) {} }
+function setPanel(sec, open){
+  sec.classList.toggle("closed", !open);
+  const b = sec.querySelector(".fold"); if (b) { b.setAttribute("aria-expanded", open); b.setAttribute("aria-label", open ? "この項目をしまう" : "この項目をひらく"); }
+  foldState[sec.dataset.panel] = open; saveFold();
+}
+function syncAllBtn(sec){ const b = sec.querySelector(".grpall"); if (!b) return; const g = [...sec.querySelectorAll(".grp")]; b.textContent = g.some(d => d.open) ? "全部しまう" : "全部ひらく"; }
+document.querySelectorAll(".fp").forEach(sec => {
+  if (foldState[sec.dataset.panel] === false) setPanel(sec, false);
+  sec.querySelector(".panel-h").addEventListener("click", e => {
+    const all = e.target.closest(".grpall");
+    if (all) { const open = all.textContent === "全部ひらく"; sec.querySelectorAll(".grp").forEach(d => { d.open = open; }); syncAllBtn(sec); return; }
+    if (e.target.closest("button:not(.fold), a, input, select")) return;
+    setPanel(sec, sec.classList.contains("closed"));
+  });
+  sec.querySelectorAll(".grp").forEach(d => {
+    if (foldState["g_" + d.dataset.grp] === false) d.open = false;
+    d.addEventListener("toggle", () => { foldState["g_" + d.dataset.grp] = d.open; saveFold(); syncAllBtn(sec); if (d.open && d.dataset.grp === "frm") drawFramePreviews(); });
+  });
+  syncAllBtn(sec);
+});
+function revealEl(el){      // open whatever is folded around an element before pointing at it
+  const sec = el.closest(".fp"); if (sec && sec.classList.contains("closed")) setPanel(sec, true);
+  const d = el.closest(".grp"); if (d && !d.open) d.open = true;
+}
+
+/* ================= background camera ================= */
+function renderBgCam(){
+  const has = S.bgs.length > 0;
+  $("bgCamEmpty").hidden = has; $("bgCamBody").hidden = !has;
+  if (!has) { setBgEdit(false); return; }
+  S.bgSel = Math.min(S.bgSel, S.bgs.length - 1);
+  const b = S.bgs[S.bgSel], fx = fxOf(b);
+  $("bgPats").innerHTML = Object.entries(BG_PATTERNS).map(([k, v]) => `<button type="button" data-pat="${k}">${v[0]}</button>`).join("");
+  $("bgPick").innerHTML = S.bgs.map((g, i) => `<button type="button" data-bsel="${i}" class="${i === S.bgSel ? "on" : ""}" title="${esc(g.name)}" aria-label="画像${i + 1}を調整">${g.type === "video" ? `<video src="${g.url}" muted></video>` : `<img src="${g.url}" alt="">`}<span>${String(i + 1).padStart(2, "0")}</span></button>`).join("");
+  $("bgSelName").textContent = `${String(S.bgSel + 1).padStart(2, "0")}：${b.name.length > 22 ? b.name.slice(0, 21) + "…" : b.name}`;
+  $("bgMoves").innerHTML = BG_MOVES.map(([k, l, ic]) => `<button type="button" data-mv="${k}" class="${fx.move === k ? "on" : ""}"><i>${ic}</i>${l}</button>`).join("");
+  $("bgAmt").value = Math.round(fx.amt * 100); $("bgAmtV").textContent = Math.round(fx.amt * 100) + "%";
+  $("bgAmt").disabled = fx.move === "still" || fx.move === "auto";
+  $("bgZoom").value = Math.round(fx.zoom * 100); $("bgZoomV").textContent = Math.round(fx.zoom * 100) + "%";
+  $("bgAllBtn").disabled = S.bgs.length < 2;
+}
+function setBgEdit(on){
+  S.bgEdit = !!on && S.bgs.length > 0;
+  if (S.bgEdit && S.playing) pause();
+  $("bgEditBtn").textContent = S.bgEdit ? "位置合わせを終える" : "プレビューで位置を合わせる";
+  $("bgEditBtn").classList.toggle("edit-on", S.bgEdit);
+  cv.parentElement.classList.toggle("bgedit", S.bgEdit);
+  $("editHint").hidden = !S.bgEdit;
+  if (S.bgEdit && window.innerWidth <= 1100) cv.scrollIntoView({ behavior: "smooth", block: "center" });
+  S.dirty = true;
+}
+function bgChanged(){ renderBgCam(); S.dirty = true; autosave(); }
+function showBg(i){      // move the playhead to where this picture is on screen (when not adjusting)
+  if (S.bgEdit || S.playing || !S.audio || oneBg()) return;
+  const sg = firstSegOf(i), [A, B] = bgSpan(sg); seek(Math.min(B - 0.1, Math.max(A, segStartOf(sg)) + 0.4));
+}
+$("bgPick").addEventListener("click", e => { const b = e.target.closest("[data-bsel]"); if (!b) return; S.bgSel = +b.dataset.bsel; renderBgCam(); showBg(S.bgSel); S.dirty = true; });
+$("bgMoves").addEventListener("click", e => { const b = e.target.closest("[data-mv]"); if (!b) return; fxOf(S.bgs[S.bgSel]).move = b.dataset.mv; bgChanged(); });
+$("bgPats").addEventListener("click", e => { const b = e.target.closest("[data-pat]"); if (!b) return; const seq = BG_PATTERNS[b.dataset.pat][1];
+  S.bgs.forEach((g, i) => { fxOf(g).move = seq[i % seq.length]; }); bgChanged(); flash(`全部の画像を「${BG_PATTERNS[b.dataset.pat][0]}」にしました`, true); });
+$("bgAmt").oninput = e => { fxOf(S.bgs[S.bgSel]).amt = +e.target.value / 100; $("bgAmtV").textContent = e.target.value + "%"; S.dirty = true; autosave(); };
+$("bgZoom").oninput = e => { const fx = fxOf(S.bgs[S.bgSel]); fx.zoom = +e.target.value / 100; clampFx(S.bgs[S.bgSel]); $("bgZoomV").textContent = e.target.value + "%"; S.dirty = true; autosave(); };
+$("bgEditBtn").onclick = () => setBgEdit(!S.bgEdit);
+$("bgAllBtn").onclick = () => { const f = fxOf(S.bgs[S.bgSel]); S.bgs.forEach(g => { g.fx = { ...f }; clampFx(g); }); bgChanged(); flash("この画像の動き・大きさ・位置を、全部の画像にそろえました", true); };
+function clampFx(b){      // keep the framing inside what the picture can actually show
+  const sz = bgSize(b); if (!sz) return; const fx = fxOf(b), base = Math.max(S.W / sz[0], S.H / sz[1]) * fx.zoom;
+  const mx = Math.max(0, (sz[0] * base - S.W) / 2 / S.W), my = Math.max(0, (sz[1] * base - S.H) / 2 / S.H);
+  fx.x = clamp(fx.x, -mx, mx); fx.y = clamp(fx.y, -my, my);
+}
+/* drag / wheel / pinch on the preview */
+const ptrs = new Map(); let pinch0 = null;
+function cvScale(){ const r = cv.getBoundingClientRect(); return r.width ? S.W / r.width : 1; }
+cv.addEventListener("pointerdown", e => {
+  if (!bgEditing()) return; e.preventDefault(); cv.setPointerCapture(e.pointerId);
+  ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY }); cv.parentElement.classList.add("drag");
+  if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; pinch0 = { d: Math.hypot(a.x - b.x, a.y - b.y), z: fxOf(S.bgs[S.bgSel]).zoom }; }
+});
+cv.addEventListener("pointermove", e => {
+  if (!bgEditing() || !ptrs.has(e.pointerId)) return;
+  const p = ptrs.get(e.pointerId), b = S.bgs[S.bgSel], fx = fxOf(b), k = cvScale();
+  if (ptrs.size === 1) { fx.x += (e.clientX - p.x) * k / S.W; fx.y += (e.clientY - p.y) * k / S.H; }
+  p.x = e.clientX; p.y = e.clientY;
+  if (ptrs.size === 2 && pinch0) { const [a, c] = [...ptrs.values()]; fx.zoom = clamp(pinch0.z * Math.hypot(a.x - c.x, a.y - c.y) / Math.max(1, pinch0.d), 1, 4); }
+  clampFx(b); $("bgZoom").value = Math.round(fx.zoom * 100); $("bgZoomV").textContent = Math.round(fx.zoom * 100) + "%"; S.dirty = true;
+});
+["pointerup", "pointercancel"].forEach(ev => cv.addEventListener(ev, e => { if (!ptrs.delete(e.pointerId)) return; if (ptrs.size < 2) pinch0 = null; if (!ptrs.size) { cv.parentElement.classList.remove("drag"); autosave(); } }));
+cv.addEventListener("wheel", e => {
+  if (!bgEditing()) return; e.preventDefault();
+  const b = S.bgs[S.bgSel], fx = fxOf(b); fx.zoom = clamp(fx.zoom * Math.exp(-e.deltaY * 0.0015), 1, 4); clampFx(b);
+  $("bgZoom").value = Math.round(fx.zoom * 100); $("bgZoomV").textContent = Math.round(fx.zoom * 100) + "%"; S.dirty = true; autosave();
+}, { passive: false });
+cv.addEventListener("dblclick", () => { if (!bgEditing()) return; const fx = fxOf(S.bgs[S.bgSel]); fx.x = 0; fx.y = 0; fx.zoom = 1; bgChanged(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && S.bgEdit) setBgEdit(false); });
+
 /* ================= loop ================= */
 let lastTL = 0;
 function loop(ts){
@@ -2200,5 +2482,4 @@ window.__LMV = { S, drawFrame, loadProject, syncLines, outTime };
 })();
 
 </script>
-
 </body></html>
