@@ -245,6 +245,13 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
 .dp-chk{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;font-weight:700}
 .dp-chk label{display:flex;align-items:center;gap:5px;cursor:pointer}
 .dp-chk input{accent-color:var(--y);width:16px;height:16px}
+.cutbox{border:1.5px solid var(--line);padding:10px 12px;margin-bottom:12px;background:#000}
+.cutbox .row{align-items:flex-start}
+.tin{display:flex;gap:4px}
+.tin input{font-family:var(--mono);font-size:14px;text-align:right;min-width:0}
+.lenbtns{display:flex;gap:4px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.lenbtns .lbl{margin-right:4px}
+.fadeval{font-family:var(--mono);color:var(--y);font-weight:600}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (max-width:1100px){.grid{grid-template-columns:1fr}.sticky{position:static}}
 @media (max-width:600px){.rail{display:none}.mast{padding:12px 16px 0}.wrap{padding:12px 16px 26px}footer{margin:0 16px}.two{grid-template-columns:1fr}.ln{grid-template-columns:24px 1fr 56px 56px}.ln .bt{grid-column:1/-1;justify-content:flex-end}}
@@ -347,7 +354,8 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
     <section class="gd-step" id="g4"><div class="n">04</div><div>
       <h3>動画に書き出す<small>04 書き出し</small></h3>
       <ol>
-        <li>ショートにしたい区間の始まりで <em>IN</em>、終わりで <em>OUT</em> を押す（タイムラインに黄色で表示）。曲全体なら押さなくてOK。</li>
+        <li><em>カット</em>で使う長さを決める：開始・終了に時間を入れるか、再生しながら「今の位置」を押す。「開始から 15秒／30秒…」ボタンでも長さを決められます。曲全体なら何もしなくてOK。</li>
+        <li><em>フェードイン／フェードアウト</em>の長さをスライダーで調整（0 で無し）。「映像も一緒に黒へフェード」をオフにすると音だけフェードします。「▶ 範囲を試聴」で仕上がりを確認できます。</li>
         <li><em>● 動画を書き出す</em>を押す。区間を実際に再生しながら録画するので、区間の長さと同じだけ時間がかかります。</li>
         <li>終わるとダウンロードされます<span data-ed="web">（保存の確認が出たら「保存」を選ぶ）</span>。Chrome / Edge では MP4 になります。</li>
       </ol>
@@ -521,7 +529,19 @@ kbd.k{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);borde
     <section class="panel" aria-label="書き出し">
       <div class="panel-h"><div class="no">04</div><div class="hd"><b>書き出し</b><span class="lbl">Render / Save / After Effects</span></div></div>
       <div class="sec">
-        <div class="row" style="padding-top:0"><div class="k">書き出す範囲<small id="rangeTxt">曲の全体</small></div></div>
+        <div class="cutbox">
+          <div class="row" style="padding-top:0"><div class="k">カット（使う長さ）<small id="rangeTxt">曲の全体</small></div><button type="button" class="mini" id="btnCutPlay">▶ 範囲を試聴</button></div>
+          <div class="two">
+            <div><label class="field-l lbl" for="cutIn">開始</label><div class="tin"><input type="text" id="cutIn" inputmode="decimal" placeholder="0:00.00" aria-label="開始の時間"><button type="button" class="mini" id="cutInNow" title="今の再生位置を開始にする">今の位置</button></div></div>
+            <div><label class="field-l lbl" for="cutOut">終了</label><div class="tin"><input type="text" id="cutOut" inputmode="decimal" placeholder="最後まで" aria-label="終了の時間"><button type="button" class="mini" id="cutOutNow" title="今の再生位置を終了にする">今の位置</button></div></div>
+          </div>
+          <div class="lenbtns"><span class="lbl">開始から</span><button type="button" class="mini" data-len="15">15秒</button><button type="button" class="mini" data-len="30">30秒</button><button type="button" class="mini" data-len="45">45秒</button><button type="button" class="mini" data-len="60">60秒</button><button type="button" class="mini" data-len="90">90秒</button><span style="flex:1"></span><button type="button" class="mini" id="cutClr">カット解除</button></div>
+          <label class="field-l lbl" for="fadeIn">フェードイン <span class="fadeval" id="fiV">1.0秒</span></label><input type="range" id="fadeIn" min="0" max="5" step="0.1" value="1">
+          <label class="field-l lbl" for="fadeOut">フェードアウト <span class="fadeval" id="foV">2.0秒</span></label><input type="range" id="fadeOut" min="0" max="8" step="0.1" value="2">
+          <div class="row" style="margin-top:6px"><div class="k">映像も一緒に黒へフェード<small>オフ：音だけフェード</small></div><label class="sw"><input type="checkbox" id="fadeVid" checked><i></i><span class="sr">映像も一緒にフェード</span></label></div>
+          <button type="button" class="btn ghost" id="btnWav" style="width:100%;margin-top:8px">✂ カットした音だけ書き出す（WAV）</button>
+          <div class="hint" style="margin-top:8px">タイムラインの黄色い線（開始・終了）はドラッグで動かせます。フェードは 0 にすると無しになります。</div>
+        </div>
         <button type="button" class="btn rec big" id="btnRec">● 動画を書き出す</button>
         <div class="prog"><i id="recBar"></i></div>
         <div class="prog-meta"><span id="recTxt">待機中</span><b id="recPct">0%</b></div>
@@ -570,7 +590,7 @@ const S = {
   sz: 1, gl: 0.3, dim: 0.45, bgMode: "2", deco: true, hold: true,
   dp: { label: true, num: true, bar: true, code: true, rail: true }, dpText: "", dpSub: "", dpRail: "",
   lines: [], audio: null, peaks: null, peakRate: 100, bgs: [],
-  range: { in: null, out: null }, sel: -1, cur: -2,
+  range: { in: null, out: null }, sel: -1, cur: -2, fade: { in: 1, out: 2, video: true }, abuf: null, prevRange: false,
   view: { start: 0, pps: 60 }, tap: { on: false, idx: 0, open: -1 },
   rec: null, playing: false, dirty: true, auto: false,
 };
@@ -909,7 +929,9 @@ function deco(t, li){
     ctx.lineWidth = u * 0.004; ctx.strokeStyle = S.colMain; ctx.globalAlpha = 0.55;
     ctx.strokeText(String(li + 1).padStart(2, "0"), W + ns * 0.12, m * 0.6);
   }
-  const d = dur() || 1, by = H - m * 1.3;
+  const ca = (S.range.in != null || S.range.out != null) ? cutA() : 0;   // timecode / bar follow the cut
+  const d = Math.max(0.01, (S.range.in != null || S.range.out != null) ? cutB() - ca : (dur() || 1)), by = H - m * 1.3;
+  t = Math.max(0, t - ca);
   ctx.globalAlpha = 0.9;
   if (dp.bar) {
     ctx.fillStyle = S.colMain; ctx.fillRect(m, by, W - m * 2, Math.max(2, u * 0.003));
@@ -944,13 +966,14 @@ function drawFrame(t){
   const sp = composite(t, L && L.ct ? L : null, outT);
   overlays(t, sp);
   deco(t, L && !L.title ? li : -1);
+  if (S.fade.video && S.audio) { const g = fadeGain(t); if (g < 0.999) { ctx.globalAlpha = 1 - g; ctx.fillStyle = "#000"; ctx.fillRect(0, 0, S.W, S.H); ctx.globalAlpha = 1; } }
 }
 
 /* ================= media ================= */
 function flash(text, ok){ const m = $("msg"); m.textContent = text; m.className = "msg show" + (ok ? " ok" : ""); clearTimeout(flash.t); flash.t = setTimeout(() => m.classList.remove("show"), 9000); }
 async function setAudio(file){
   if (S.audio) URL.revokeObjectURL(S.audio.url);
-  S.audio = { file, name: file.name, url: URL.createObjectURL(file), dur: 0 };
+  S.audio = { file, name: file.name, url: URL.createObjectURL(file), dur: 0 }; S.abuf = null;
   au.src = S.audio.url;
   await new Promise(res => { au.onloadedmetadata = res; au.onerror = res; });
   S.audio.dur = au.duration || 0;
@@ -959,6 +982,7 @@ async function setAudio(file){
     const ac = new (window.AudioContext || window.webkitAudioContext)();
     const buf = await ac.decodeAudioData(await file.arrayBuffer());
     ac.close && ac.close();
+    S.abuf = buf;
     const rate = S.peakRate, step = Math.floor(buf.sampleRate / rate), n = Math.ceil(buf.length / step);
     const pk = new Float32Array(n); const chs = [];
     for (let c = 0; c < buf.numberOfChannels; c++) chs.push(buf.getChannelData(c));
@@ -1006,13 +1030,14 @@ $("btnPick").onclick = () => $("inPick").click();
 $("inPick").onchange = e => { handleFiles([...e.target.files]); e.target.value = ""; };
 
 /* ================= playback ================= */
-let actx = null, adest = null;
+let actx = null, adest = null, gainNode = null;
 function ensureGraph(){
   if (!actx) {
     actx = new (window.AudioContext || window.webkitAudioContext)();
     const src = actx.createMediaElementSource(au);
     adest = actx.createMediaStreamDestination();
-    src.connect(actx.destination); src.connect(adest);
+    gainNode = actx.createGain();
+    src.connect(gainNode); gainNode.connect(actx.destination); gainNode.connect(adest);
   }
   if (actx.state === "suspended") actx.resume();
 }
@@ -1030,15 +1055,98 @@ $("btnPlay").onclick = () => (S.playing ? pause() : play());
 $("btnTop").onclick = () => { au.currentTime = S.range.in ?? 0; S.dirty = true; };
 function seek(t){ if (!S.audio) return; au.currentTime = clamp(t, 0, dur()); S.dirty = true; }
 
-/* ================= range ================= */
+/* ================= range (cut) + fades ================= */
+const cutA = () => S.range.in ?? 0;
+const cutB = () => S.range.out ?? dur();
+const easeFade = (x) => Math.sin(clamp(x) * Math.PI / 2);   // equal-power style curve
+function fadeGain(t){
+  const a = cutA(), b = cutB();
+  if (t < a - 0.001 || t > b + 0.001) return 1;              // outside the cut: normal volume while editing
+  let g = 1;
+  if (S.fade.in > 0) g *= easeFade((t - a) / S.fade.in);
+  if (S.fade.out > 0) g *= easeFade((b - t) / S.fade.out);
+  return g;
+}
+function parseT(v){
+  v = String(v || "").trim().replace(/[：]/g, ":"); if (!v) return null;
+  const m = v.match(/^(\d+):(\d+(?:\.\d+)?)$/); if (m) return +m[1] * 60 + +m[2];
+  const n = parseFloat(v); return isFinite(n) ? n : NaN;
+}
 function refreshRange(){
   const a = S.range.in, b = S.range.out;
   $("rangeTxt").textContent = a == null && b == null ? "曲の全体" : `${fmt(a ?? 0)} 〜 ${fmt(b ?? dur())}（${((b ?? dur()) - (a ?? 0)).toFixed(1)} 秒）`;
-  drawTL();
+  if (document.activeElement !== $("cutIn")) $("cutIn").value = a == null ? "" : fmt(a);
+  if (document.activeElement !== $("cutOut")) $("cutOut").value = b == null ? "" : fmt(b);
+  drawTL(); S.dirty = true; autosave();
 }
-$("btnIn").onclick = () => { S.range.in = now(); if (S.range.out != null && S.range.out <= S.range.in) S.range.out = null; refreshRange(); };
-$("btnOut").onclick = () => { S.range.out = now(); if (S.range.in != null && S.range.in >= S.range.out) S.range.in = null; refreshRange(); };
-$("btnRangeClr").onclick = () => { S.range.in = S.range.out = null; refreshRange(); };
+function setCut(a, b){
+  const d = dur() || Infinity;
+  a = a == null ? null : clamp(a, 0, d); b = b == null ? null : clamp(b, 0, d);
+  if (a != null && b != null && b - a < 0.5) { flash("カットの長さは 0.5 秒以上にしてください"); return false; }
+  S.range.in = a; S.range.out = b; refreshRange(); return true;
+}
+$("cutIn").addEventListener("change", e => { const v = parseT(e.target.value); if (Number.isNaN(v)) { flash("時間は 1:23.50 か 83.5 のように入れてください"); refreshRange(); return; } setCut(v, S.range.out) || refreshRange(); });
+$("cutOut").addEventListener("change", e => { const v = parseT(e.target.value); if (Number.isNaN(v)) { flash("時間は 1:23.50 か 83.5 のように入れてください"); refreshRange(); return; } setCut(S.range.in, v) || refreshRange(); });
+$("cutInNow").onclick = () => setCut(now(), S.range.out != null && S.range.out <= now() + 0.5 ? null : S.range.out);
+$("cutOutNow").onclick = () => setCut(S.range.in != null && S.range.in >= now() - 0.5 ? null : S.range.in, now());
+$("cutClr").onclick = () => { S.range.in = S.range.out = null; refreshRange(); };
+document.querySelectorAll("[data-len]").forEach(b => b.onclick = () => {
+  if (!S.audio) { flash("先に曲をドロップしてください"); return; }
+  const a = cutA(), L = +b.dataset.len;
+  if (a + L > dur() + 0.01) flash(`開始から ${L} 秒は曲の長さを超えるので、曲の最後までにしました`);
+  setCut(S.range.in ?? 0, Math.min(dur(), a + L));
+});
+function fadeLabels(){ $("fiV").textContent = S.fade.in > 0 ? S.fade.in.toFixed(1) + "秒" : "なし"; $("foV").textContent = S.fade.out > 0 ? S.fade.out.toFixed(1) + "秒" : "なし"; }
+$("fadeIn").oninput = e => { S.fade.in = +e.target.value; fadeLabels(); drawTL(); S.dirty = true; autosave(); };
+$("fadeOut").oninput = e => { S.fade.out = +e.target.value; fadeLabels(); drawTL(); S.dirty = true; autosave(); };
+$("fadeVid").onchange = e => { S.fade.video = e.target.checked; S.dirty = true; autosave(); };
+$("btnCutPlay").onclick = async () => {
+  if (!S.audio) { flash("先に曲をドロップしてください"); return; }
+  if (S.prevRange && S.playing) { pause(); S.prevRange = false; return; }
+  seek(cutA()); await new Promise(r => setTimeout(r, 60)); S.prevRange = true; await play();
+};
+au.addEventListener("pause", () => { S.prevRange = false; $("btnCutPlay").textContent = "▶ 範囲を試聴"; });
+au.addEventListener("play", () => { if (S.prevRange) $("btnCutPlay").textContent = "■ 試聴を止める"; });
+
+/* WAV export of the cut with fades (offline render) */
+function encodeWav(buf){
+  const ch = buf.numberOfChannels, sr = buf.sampleRate, n = buf.length, bytes = 44 + n * ch * 2;
+  const ab = new ArrayBuffer(bytes), v = new DataView(ab); let o = 0;
+  const str = s => { for (let i = 0; i < s.length; i++) v.setUint8(o++, s.charCodeAt(i)); };
+  str("RIFF"); v.setUint32(o, bytes - 8, true); o += 4; str("WAVE"); str("fmt "); v.setUint32(o, 16, true); o += 4;
+  v.setUint16(o, 1, true); o += 2; v.setUint16(o, ch, true); o += 2; v.setUint32(o, sr, true); o += 4;
+  v.setUint32(o, sr * ch * 2, true); o += 4; v.setUint16(o, ch * 2, true); o += 2; v.setUint16(o, 16, true); o += 2;
+  str("data"); v.setUint32(o, n * ch * 2, true); o += 4;
+  const data = []; for (let c = 0; c < ch; c++) data.push(buf.getChannelData(c));
+  for (let i = 0; i < n; i++) for (let c = 0; c < ch; c++) { const x = Math.max(-1, Math.min(1, data[c][i])); v.setInt16(o, x < 0 ? x * 0x8000 : x * 0x7fff, true); o += 2; }
+  return new Blob([ab], { type: "audio/wav" });
+}
+$("btnWav").onclick = async () => {
+  if (!S.audio) { flash("先に曲をドロップしてください"); return; }
+  if (!S.abuf) { flash("曲を読み込み中です。少し待ってからもう一度押してください"); return; }
+  const src = S.abuf, sr = src.sampleRate, a = cutA(), b = cutB(), len = Math.max(1, Math.round((b - a) * sr));
+  $("btnWav").disabled = true; $("btnWav").textContent = "書き出し中…";
+  try {
+    const oc = new OfflineAudioContext(src.numberOfChannels, len, sr);
+    const node = oc.createBufferSource(); node.buffer = src;
+    const g = oc.createGain(); node.connect(g); g.connect(oc.destination);
+    const N = 256, curve = (dir, L) => { const c = new Float32Array(N); for (let i = 0; i < N; i++) c[i] = easeFade(dir > 0 ? i / (N - 1) : 1 - i / (N - 1)); return c; };
+    const fi = Math.min(S.fade.in, (b - a) / 2), fo = Math.min(S.fade.out, (b - a) / 2);
+    if (!(fi > 0)) g.gain.setValueAtTime(1, 0);
+    if (fi > 0) g.gain.setValueCurveAtTime(curve(1), 0, fi);
+    if (fo > 0) g.gain.setValueCurveAtTime(curve(-1), (b - a) - fo, fo);
+    node.start(0, a, b - a);
+    const out = await oc.startRendering();
+    const base = ($("title").value.trim() || S.audio.name.replace(/\.[^.]+$/, "")).replace(/[\\/:*?"<>|]/g, "_");
+    const name = `${base}_cut_${fmt(a).replace(/[:.]/g, "")}-${fmt(b).replace(/[:.]/g, "")}.wav`;
+    const r = await saveFile(name, encodeWav(out));
+    if (r === "saved") flash(`音を書き出しました：${name}（${(b - a).toFixed(1)} 秒）`, true);
+  } catch (e) { flash("音の書き出しに失敗しました：" + (e.message || e)); }
+  finally { $("btnWav").disabled = false; $("btnWav").textContent = "✂ カットした音だけ書き出す（WAV）"; }
+};
+$("btnIn").onclick = () => $("cutInNow").click();
+$("btnOut").onclick = () => $("cutOutNow").click();
+$("btnRangeClr").onclick = () => $("cutClr").click();
 
 /* ================= lines table ================= */
 function lineHTML(L){
@@ -1170,6 +1278,18 @@ function drawTL(){
     const a = X(S.range.in ?? 0), b = X(S.range.out ?? d);
     c.fillStyle = "rgba(255,230,0,.10)"; c.fillRect(a, 0, b - a, 150);
     c.fillStyle = "#ffe600"; c.fillRect(a, 0, 2, 150); c.fillRect(b - 2, 0, 2, 150);
+    c.fillRect(a - 5, 0, 12, 10); c.fillRect(b - 7, 0, 12, 10);
+  }
+  // fade ramps over the waveform
+  if (S.audio && (S.fade.in > 0 || S.fade.out > 0)) {
+    const a = cutA(), b = cutB(), top = TL.wave0 + 2, bot = TL.wave1;
+    c.save(); c.strokeStyle = "#ffe600"; c.lineWidth = 1.5; c.fillStyle = "rgba(0,0,0,.55)";
+    const steps = 24;
+    if (S.fade.in > 0) { c.beginPath(); c.moveTo(X(a), top); for (let i = 0; i <= steps; i++) { const u = i / steps; c.lineTo(X(a + S.fade.in * u), bot - (bot - top) * easeFade(u)); } c.lineTo(X(a), bot); c.closePath(); c.fill();
+      c.beginPath(); for (let i = 0; i <= steps; i++) { const u = i / steps, x = X(a + S.fade.in * u), y = bot - (bot - top) * easeFade(u); i ? c.lineTo(x, y) : c.moveTo(x, y); } c.stroke(); }
+    if (S.fade.out > 0) { c.beginPath(); c.moveTo(X(b), top); for (let i = 0; i <= steps; i++) { const u = i / steps; c.lineTo(X(b - S.fade.out * u), bot - (bot - top) * easeFade(u)); } c.lineTo(X(b), bot); c.closePath(); c.fill();
+      c.beginPath(); for (let i = 0; i <= steps; i++) { const u = i / steps, x = X(b - S.fade.out * u), y = bot - (bot - top) * easeFade(u); i ? c.lineTo(x, y) : c.moveTo(x, y); } c.stroke(); }
+    c.restore();
   }
   // ruler
   const stepCands = [0.5, 1, 2, 5, 10, 15, 30, 60]; const step = stepCands.find(s => s * pps >= 60) || 60;
@@ -1203,6 +1323,12 @@ function drawTL(){
   const px = X(now()); c.fillStyle = "#e60012"; c.fillRect(px - 1, 0, 2, 150);
   c.beginPath(); c.moveTo(px - 6, 0); c.lineTo(px + 6, 0); c.lineTo(px, 8); c.fill();
 }
+function hitRange(x, y){
+  if (!S.audio || y > TL.blk0 - 4 || (S.range.in == null && S.range.out == null)) return null;
+  if (Math.abs(x - X(cutA())) <= 7) return "rin";
+  if (Math.abs(x - X(cutB())) <= 7) return "rout";
+  return null;
+}
 function hitBlock(x, y){
   if (y < TL.blk0 - 4) return null;
   for (let i = S.lines.length - 1; i >= 0; i--) {
@@ -1218,16 +1344,23 @@ function hitBlock(x, y){
 tl.addEventListener("pointerdown", e => {
   if (S.rec) return;
   const r = tl.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-  const h = hitBlock(x, y);
   tl.setPointerCapture(e.pointerId);
+  const rh = hitRange(x, y);
+  if (rh) { drag = { mode: rh }; return; }
+  const h = hitBlock(x, y);
   if (h) { const L = S.lines[h.i]; drag = { ...h, x, o: { t0: L.t0, t1: L.t1, ct: L.ct ? L.ct.slice() : null } }; S.sel = h.i; }
   else { drag = { mode: "seek" }; seek(S.view.start + x / S.view.pps); }
   drawTL();
 });
 tl.addEventListener("pointermove", e => {
   const r = tl.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-  if (!drag) { const h = hitBlock(x, y); tl.style.cursor = !h ? "crosshair" : h.mode === "m" ? "grab" : "ew-resize"; return; }
+  if (!drag) { const h = hitRange(x, y) || hitBlock(x, y); tl.style.cursor = !h ? "crosshair" : h.mode === "m" ? "grab" : "ew-resize"; return; }
   if (drag.mode === "seek") { seek(S.view.start + x / S.view.pps); drawTL(); return; }
+  if (drag.mode === "rin" || drag.mode === "rout") {
+    const t = clamp(S.view.start + x / S.view.pps, 0, dur());
+    if (drag.mode === "rin") S.range.in = Math.min(t, cutB() - 0.5); else S.range.out = Math.max(t, cutA() + 0.5);
+    refreshRange(); return;
+  }
   const L = S.lines[drag.i], o = drag.o, dt = (x - drag.x) / S.view.pps;
   L.t0 = o.t0; L.t1 = o.t1; L.ct = o.ct ? o.ct.slice() : null;
   if (drag.mode === "m") { const d = Math.max(-o.t0, dt); remap(L, o.t0 + d, o.t1 + d); }
@@ -1235,7 +1368,7 @@ tl.addEventListener("pointermove", e => {
   else remap(L, o.t0, Math.max(o.t0 + 0.1, o.t1 + dt));
   S.dirty = true; drawTL();
 });
-tl.addEventListener("pointerup", () => { if (drag && drag.mode !== "seek") afterEdit(); drag = null; });
+tl.addEventListener("pointerup", () => { if (drag && drag.mode !== "seek" && drag.mode !== "rin" && drag.mode !== "rout") afterEdit(); drag = null; });
 tl.addEventListener("wheel", e => {
   e.preventDefault();
   const r = tl.getBoundingClientRect(), x = e.clientX - r.left;
@@ -1274,9 +1407,10 @@ async function record(){
   if (S.tap.on) endTap();
   const mime = pickMime(); if (!mime) { flash("このブラウザは動画の書き出しに対応していません。Chrome か Edge で開いてください"); return; }
   ensureGraph();
-  const a = S.range.in ?? 0, b = S.range.out ?? dur();
+  const a = cutA(), b = cutB();
   if (b - a < 0.5) { flash("書き出す範囲が短すぎます"); return; }
   pause(); au.currentTime = a; await new Promise(r => setTimeout(r, 150));
+  if (gainNode) { gainNode.gain.cancelScheduledValues(actx.currentTime); gainNode.gain.setValueAtTime(fadeGain(a), actx.currentTime); }
   drawFrame(a);
   const stream = cv.captureStream(30);
   adest.stream.getAudioTracks().forEach(tr => stream.addTrack(tr));
@@ -1314,6 +1448,7 @@ function projectJSON(){
     size: S.size, width: S.W, height: S.H, fps: 30, preset: S.preset,
     style: { font: S.font, colMain: S.colMain, colAcc: S.colAcc, colAccText: S.colAccText, colDeco: S.colDeco, colDeco2: S.colDeco2, colBg: S.colBg, theme: S.theme, tdeco: S.tdeco, tdecoW: S.tdecoW, accStyle: S.accStyle, stroke: S.tdeco !== "none", size: S.sz, glitch: S.gl, dim: S.dim, bgMode: S.bgMode, deco: S.deco, hold: S.hold, decoParts: S.dp, decoText: S.dpText, decoSub: S.dpSub, decoRail: S.dpRail },
     backgrounds: S.bgs.map(b => b.name),
+    cut: { in: S.range.in, out: S.range.out, fadeIn: S.fade.in, fadeOut: S.fade.out, fadeVideo: S.fade.video },
     lyrics: $("lyrics").value,
     lines: S.lines.map((L, i) => ({ text: L.raw, display: L.disp, accent: L.acc, t0: L.t0, t1: L.t1, out: L.t0 == null ? null : +outTime(i).toFixed(3), ct: L.ct })),
   };
@@ -1333,6 +1468,11 @@ function loadProject(text, quiet){
   if (!j || j.format !== "isumi-lyricmv") { if (!quiet) flash("LYRIC MV STUDIO の保存データではありません"); return false; }
   $("title").value = j.title || ""; $("artist").value = j.artist || "";
   const st = j.style || {};
+  const cut = j.cut || {};
+  S.range.in = typeof cut.in === "number" ? cut.in : null; S.range.out = typeof cut.out === "number" ? cut.out : null;
+  if (typeof cut.fadeIn === "number") S.fade.in = cut.fadeIn; if (typeof cut.fadeOut === "number") S.fade.out = cut.fadeOut;
+  if (cut.fadeVideo != null) S.fade.video = !!cut.fadeVideo;
+  $("fadeIn").value = S.fade.in; $("fadeOut").value = S.fade.out; $("fadeVid").checked = S.fade.video; fadeLabels();
   if (j.size) setSeg("segSize", j.size, v => { S.size = v; setSize(); });
   if (j.preset) setSeg("segPreset", j.preset, v => (S.preset = v));
   if (st.font) { S.font = st.font; $("font").value = st.font; }
@@ -1353,7 +1493,7 @@ function loadProject(text, quiet){
   $("lyrics").value = j.lyrics || (j.lines || []).map(l => l.text).join("\n");
   S.lines = []; syncLines();
   (j.lines || []).forEach((l, i) => { const L = S.lines[i]; if (!L || l.t0 == null) return; L.t0 = l.t0; L.t1 = l.t1; L.ct = l.ct && l.ct.length === L.disp.length ? l.ct : null; if (!L.ct) spread(L); });
-  refreshLabels(); afterEdit(); loadFonts();
+  refreshLabels(); afterEdit(); loadFonts(); refreshRange();
   if (!quiet) { const need = [j.audio, ...(j.backgrounds || [])].filter(n => n && !(S.audio && S.audio.name === n) && !S.bgs.some(g => g.name === n)); flash("保存データを開きました。" + (need.length ? "曲と背景はもう一度ドロップしてください：" + need.join(" / ") : ""), true); }
   return true;
 }
@@ -1553,6 +1693,8 @@ try { if (!localStorage.getItem("isumi-lyricmv-welcomed")) $("welcome").hidden =
 let lastTL = 0;
 function loop(ts){
   const t = now();
+  if (gainNode && actx) { const g = fadeGain(t); if (Math.abs(gainNode.gain.value - g) > 0.001) gainNode.gain.setTargetAtTime(g, actx.currentTime, 0.012); }
+  if (S.prevRange && S.playing && t >= cutB()) { pause(); seek(cutA()); }
   if (S.playing || S.dirty || S.rec) { drawFrame(t); S.dirty = false; }
   $("tc").innerHTML = `${fmt(t)} <small>/ ${fmt(dur()).replace(/\.\d+$/, "")}</small>`;
   const ci = activeAt(t);
@@ -1585,8 +1727,8 @@ function loop(ts){
 $("status").classList.toggle("ok", SERVER || WEB);
 $("statusTxt").textContent = SERVER ? "自動タイミング ON（Whisper）" : WEB ? "WEB版 ／ タップでタイミング" : "単体モード（自動タイミングは bat から起動）";
 if (!SERVER) { $("btnAuto").hidden = true; $("btnTap").classList.add("solo"); $("btnTap").classList.remove("ghost"); }
-if (WEB) { $("aeHint").hidden = true; $("btnSave").textContent = "タイミングを保存"; }
-setSize(); renderMedia(); refreshLabels(); renderLook(); syncDecoUI();
+if (WEB) { $("btnWav").hidden = true; $("aeHint").hidden = true; $("btnSave").textContent = "タイミングを保存"; }
+setSize(); renderMedia(); refreshLabels(); renderLook(); syncDecoUI(); fadeLabels();
 try { const a = localStorage.getItem("isumi-lyricmv-autosave"); if (a && loadProject(a, true) && S.lines.length) flash("前回の歌詞とタイミングを復元しました（曲と背景はもう一度ドロップしてください）", true); } catch (e) {}
 renderTable(); loadFonts(); drawTL();
 requestAnimationFrame(loop);
